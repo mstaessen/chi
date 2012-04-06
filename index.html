@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+	<title>Relabel</title>
+	
+	<!-- jQuery UI styles: included first so they can be overridden -->
+	<link rel="stylesheet/css" type="text/css" href="assets/css/jquery-ui.css" />
+	
+	<!-- The less stylesheets -->
+	<link rel="stylesheet/less" type="text/css" href="assets/less/styles.less" />
+	
+	<!-- The less compiler: include all less files BEFORE the compiler -->
+	<script src="assets/js/less.min.js"></script>
+	
+	<!-- jQuery & jQuery UI -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.min.js"></script>
+	
+	<script src="assets/js/toggle-groups.js"></script>
+</head>
+<body>
+	<div id="labels-panel">
+		<ul	class="nav nav-list toggle-group">
+			<li class="active"><a href="#"><i class="icon-inbox"></i> Inbox</a></li>
+			<li><a href="#"><i class="icon-arrow-up"></i> Outbox</a></li>
+			<li><a href="#"><i class="icon-folder-open"></i> Archive</a></li>
+			<li><a href="#"><i class="icon-time"></i> Read Later</a></li>
+			<li><a href="#"><i class="icon-trash"></i> Trash</a></li>
+		</ul>
+		
+		<ul	class="nav nav-list toggle-group">
+			<li class="nav-header">Sources</li>
+			<li class="active"><a href="#"><i class="icon-envelope"></i> Email</a></li>
+			<li><a href="#"><i class="icon-"></i> Facebook</a></li>
+			<li><a href="#"><i class="icon-"></i> Twitter</a></li>
+			<li><a href="#"><i class="icon-"></i> Google+</a></li>
+			<li><a href="#"><i class="icon-"></i> XKCD RSS</a></li>
+		</ul>
+		
+		<ul	class="nav nav-list toggle-group">
+			<li class="nav-header"><i class="icon-tags"></i> Labels</li>
+			<li><a href="#">Email</a></li>
+			<li><a href="#">Facebook</a></li>
+			<li><a href="#">Twitter</a></li>
+			<li><a href="#">Google+</a></li>
+			<li><a href="#"></a></li>
+		</ul>
+	</div>
+	
+	<div id="items-panel">
+		<ul id="items-list" class="toggle-group">
+			<li class="active">
+				<img src="http://www.gravatar.com/avatar/?d=mm&s=48" alt="profile picture" />
+				<h4>Mystery Man</h4>
+			</li>
+			<!-- TODO fill in items with hogan.js -->
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	
+	<div id="preview-panel">
+	
+	</div>
+</body>
+</html>
