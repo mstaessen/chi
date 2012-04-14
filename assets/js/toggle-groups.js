@@ -1,6 +1,6 @@
 updateToggleGroups = function() {
-    $(".toggle-group > li").off('click');
-	$(".toggle-group > li").click(function() {
+    $(".toggle-group > li").off('click.toggle-group');
+	$(".toggle-group > li").on('click.toggle-group', function() {
 		// If the clicked item is active, make it inactive.
 		if($(this).hasClass("active")) {
 			$(this).removeClass("active");

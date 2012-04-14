@@ -18,23 +18,18 @@
 	
 	<!-- Hogan.js -->
 	<script src="assets/js/hogan.js"></script>
-	<script src="assets/js/templates.js"></script>
+	
+	<!-- content -->
+	<script src="assets/js/content.js"></script>
+	<script src="assets/js/controller.js"></script>
 	
 	<script type="text/javascript">
     $(document).ready(function() {
-	    var itemList = [
-	        {
-	            from: 'Mystery Man',
-	            content: '<a href="http://www.lipsum.com/">Lorem ipsum</a> dolor sit amet, consectetur adipiscing elit. <a href="#">...</a>',
-	            labels: [
-	                { label: 'facebook' },
-	                { label: 'lipsum' }
-	            ]
-	        }
-	    ];
-	    
-	    setListItems(itemList);
-	    
+        $(".toggle-group:not(.items-list) > li").on('click.updatefilters', function() {
+            toggleListItems(this.getAttribute('data-list'));
+        });
+
+        toggleListItems('inbox');
 	    updateToggleGroups();
     });
 	</script>
@@ -44,28 +39,28 @@
 <body>
 	<div id="labels-panel">
 		<ul	class="nav nav-list toggle-group">
-			<li class="active"><a href="#"><i class="icon-inbox"></i> Inbox</a></li>
-			<li><a href="#"><i class="icon-arrow-up"></i> Outbox</a></li>
-			<li><a href="#"><i class="icon-folder-open"></i> Archive</a></li>
-			<li><a href="#"><i class="icon-time"></i> Read Later</a></li>
-			<li><a href="#"><i class="icon-trash"></i> Trash</a></li>
+			<li class="active" data-list="inbox"><a href="#"><i class="icon-inbox"></i> Inbox</a></li>
+			<li data-list="outbox"><a href="#"><i class="icon-arrow-up"></i> Outbox</a></li>
+			<li data-list="archive"><a href="#"><i class="icon-folder-open"></i> Archive</a></li>
+			<li data-list="readlater"><a href="#"><i class="icon-time"></i> Read Later</a></li>
+			<li data-list="trash"><a href="#"><i class="icon-trash"></i> Trash</a></li>
 		</ul>
 		
 		<ul	class="nav nav-list toggle-group">
 			<li class="nav-header">Sources</li>
-			<li><a href="#"><i class="icon-envelope"></i> Email</a></li>
-			<li><a href="#"><i class="icon-"></i> Facebook</a></li>
-			<li><a href="#"><i class="icon-"></i> Twitter</a></li>
-			<li><a href="#"><i class="icon-"></i> Google+</a></li>
-			<li><a href="#"><i class="icon-"></i> XKCD RSS</a></li>
+			<li data-list="source-email"><a href="#"><i class="icon-envelope"></i> Email</a></li>
+			<li data-list="source-facebook"><a href="#"><i class="icon-"></i> Facebook</a></li>
+			<li data-list="source-twitter"><a href="#"><i class="icon-"></i> Twitter</a></li>
+			<li data-list="source-google+"><a href="#"><i class="icon-"></i> Google+</a></li>
+			<li data-list="source-xkcd"><a href="#"><i class="icon-"></i> XKCD RSS</a></li>
 		</ul>
 		
 		<ul	class="nav nav-list toggle-group">
 			<li class="nav-header"><i class="icon-tags"></i> Labels</li>
-			<li><a href="#">Email</a></li>
-			<li><a href="#">Facebook</a></li>
-			<li><a href="#">Twitter</a></li>
-			<li><a href="#">Google+</a></li>
+			<li data-list="label-email"><a href="#">Email</a></li>
+			<li data-list="label-facebook"><a href="#">Facebook</a></li>
+			<li data-list="label-twitter"><a href="#">Twitter</a></li>
+			<li data-list="label-google+"><a href="#">Google+</a></li>
 		</ul>
 	</div>
 	
