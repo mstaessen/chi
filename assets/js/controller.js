@@ -1,5 +1,5 @@
 var listItemTemplate = Hogan.compile(
-'<li data-message-id="{{id}}">\n\
+'<li id="message-{{id}}" {{^read}}class="unread"{{/read}} data-message-id="{{id}}">\n\
     <img src="http://www.gravatar.com/avatar/?d=mm&s=48" alt="profile picture" />\n\
 	<h4>{{from}}</h4>\n\
 	<div class="preview">{{{content}}}</div>\n\
@@ -44,10 +44,22 @@ function toggleListItems(name) {
             _filter = flag;
     }
     
+    updateListItems();
+}
+
+function updateListItems() {
+    console.log('updating list items');
+
     if(!_filter && !_source_filter && !_label_filter) {
         $('#items-list')[0].innerHTML = '';
         return;
     }
+    
+    active = $('#items-list > li.active');
+    if(active.length != 0)
+        active = active[0].getAttribute('data-message-id');
+    else
+        active = -1;
 
     $('#items-list')[0].innerHTML = messages.map(function(message) {
         if (_filter && message.location != _filter)
@@ -67,13 +79,56 @@ function toggleListItems(name) {
         return '';
     }).join('\n');
     
+    if(active != -1) {
+        $('#items-list > #message-' + active).addClass('active');
+    }
+    
     $('#items-list > li').on('click.showmessage', function() {
         message = this.getAttribute('data-message-id');
         showMessage(message);       
     });
 }
 
+function setLocation(mid, location) {
+    getMessage(mid).location = location;
+    updateListItems();
+}
+
+function archive(mid) {
+    console.log('archiving ' + mid);
+
+    if (getMessage(mid).location == 'inbox')
+        setLocation(mid, 'archive');
+}
+
+function trash(mid) {
+    console.log('trashing ' + mid);
+    
+    setLocation(mid, 'trash');
+}
+
+function markRead(mid) {
+    console.log('marking ' + mid + ' as read');
+    
+    msg = getMessage(mid);
+    if (msg.short.read) return;
+    
+    msg.short.read = true;
+    $('#items-list > #message-' + mid).removeClass('unread');
+}
+
+function markUnread(mid) {
+    console.log('marking ' + mid + ' as unread');
+
+    msg = getMessage(mid);
+    if (!msg.short.read) return;
+
+    getMessage(mid).short.read = false;
+    $('#items-list > #message-' + mid).addClass('unread');
+}
+
 function showMessage(mid) {
+    markRead(mid);
     console.log('showing message ' + mid);
     message = getMessage(mid);
     
