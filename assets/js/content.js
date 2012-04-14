@@ -1,7 +1,7 @@
 var messages = [];
 
 (function() {
-    function saveMessage(message) { message.id = messages.push(message) - 1; message.short.id=message.id }
+    function saveMessage(message) { message.id = messages.push(message); message.short.id=message.id }
 
     var short_message = {
         from: 'Mystery Man',
@@ -30,7 +30,7 @@ var messages = [];
     
     short_message = {
         from: 'Bram Gotink',
-        content: 'Ik vraag me af wat er mysterieuze slides staat... #chikul12',
+        content: 'Ik vraag me af wat er op de mysterieuze slides staat... #chikul12',
         labels: [
             { label: 'twitter' },
             { label: 'chikul12' }
@@ -40,7 +40,7 @@ var messages = [];
         short: short_message,
         source: 'twitter',
         from: 'Bram Gotink (<a href="twitter.com/bram_gotink">@bram_gotink</a>)',
-        content: 'Ik vraag me af wat er mysterieuze slides staat... #chikul12', 
+        content: 'Ik vraag me af wat er op de mysterieuze slides staat... #chikul12', 
         location: 'inbox',
         read_later: 0,
         labels: [
@@ -52,6 +52,6 @@ var messages = [];
     saveMessage(message);
 })();
 
-function getMessage(id) { return messages[id]; }
+function getMessage(id) { return messages[id - 1]; }
 
 function getShortMessage(id) { return getMessage(id).short; }

@@ -17,6 +17,8 @@ var _filter = false;
 var _source_filter = false;
 var _label_filter = false;
 
+var _active_item = false;
+
 function toggleListItems(name) {
     flag = name;
     if (name.match(/^source-.*/)) {
@@ -55,12 +57,6 @@ function updateListItems() {
         return;
     }
     
-    active = $('#items-list > li.active');
-    if(active.length != 0)
-        active = active[0].getAttribute('data-message-id');
-    else
-        active = -1;
-
     $('#items-list')[0].innerHTML = messages.map(function(message) {
         if (_filter && message.location != _filter)
             return '';
@@ -79,13 +75,13 @@ function updateListItems() {
         return '';
     }).join('\n');
     
-    if(active != -1) {
-        $('#items-list > #message-' + active).addClass('active');
+    if(_active_item) {
+        $('#items-list > #message-' + _active_item).addClass('active');
     }
     
     $('#items-list > li').on('click.showmessage', function() {
         message = this.getAttribute('data-message-id');
-        showMessage(message);       
+        toggleMessage(message);       
     });
 }
 
@@ -108,29 +104,37 @@ function trash(mid) {
 }
 
 function markRead(mid) {
-    console.log('marking ' + mid + ' as read');
-    
     msg = getMessage(mid);
     if (msg.short.read) return;
+    
+    console.log('marking ' + mid + ' as read');
     
     msg.short.read = true;
     $('#items-list > #message-' + mid).removeClass('unread');
 }
 
 function markUnread(mid) {
-    console.log('marking ' + mid + ' as unread');
-
     msg = getMessage(mid);
     if (!msg.short.read) return;
+
+    console.log('marking ' + mid + ' as unread');
 
     getMessage(mid).short.read = false;
     $('#items-list > #message-' + mid).addClass('unread');
 }
 
-function showMessage(mid) {
+function toggleMessage(mid) {
+    if(_active_item == mid) {
+        console.log('hiding message ' + mid);
+        _active_item = false;
+        // TODO actually hide it
+        return;
+    }
+    
     markRead(mid);
     console.log('showing message ' + mid);
     message = getMessage(mid);
+    _active_item = mid;
     
     if (message.source == 'twitter') {
     
