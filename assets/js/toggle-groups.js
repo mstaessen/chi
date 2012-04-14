@@ -1,4 +1,5 @@
-$(document).ready(function() {
+updateToggleGroups = function() {
+    $(".toggle-group > li").off('click');
 	$(".toggle-group > li").click(function() {
 		// If the clicked item is active, make it inactive.
 		if($(this).hasClass("active")) {
@@ -12,4 +13,6 @@ $(document).ready(function() {
 			$(this).addClass("active");
 		}
 	});
-});
+};
+
+//$(document).ready(updateToggleGroups);

@@ -16,6 +16,29 @@
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery-ui.min.js"></script>
 	
+	<!-- Hogan.js -->
+	<script src="assets/js/hogan.js"></script>
+	<script src="assets/js/templates.js"></script>
+	
+	<script type="text/javascript">
+    $(document).ready(function() {
+	    var itemList = [
+	        {
+	            from: 'Mystery Man',
+	            content: '<a href="http://www.lipsum.com/">Lorem ipsum</a> dolor sit amet, consectetur adipiscing elit. <a href="#">...</a>',
+	            labels: [
+	                { label: 'facebook' },
+	                { label: 'lipsum' }
+	            ]
+	        }
+	    ];
+	    
+	    setListItems(itemList);
+	    
+	    updateToggleGroups();
+    });
+	</script>
+	
 	<script src="assets/js/toggle-groups.js"></script>
 </head>
 <body>
@@ -30,7 +53,7 @@
 		
 		<ul	class="nav nav-list toggle-group">
 			<li class="nav-header">Sources</li>
-			<li class="active"><a href="#"><i class="icon-envelope"></i> Email</a></li>
+			<li><a href="#"><i class="icon-envelope"></i> Email</a></li>
 			<li><a href="#"><i class="icon-"></i> Facebook</a></li>
 			<li><a href="#"><i class="icon-"></i> Twitter</a></li>
 			<li><a href="#"><i class="icon-"></i> Google+</a></li>
@@ -43,26 +66,12 @@
 			<li><a href="#">Facebook</a></li>
 			<li><a href="#">Twitter</a></li>
 			<li><a href="#">Google+</a></li>
-			<li><a href="#"></a></li>
 		</ul>
 	</div>
 	
 	<div id="items-panel">
 		<ul id="items-list" class="toggle-group">
-			<li class="active">
-				<img src="http://www.gravatar.com/avatar/?d=mm&s=48" alt="profile picture" />
-				<h4>Mystery Man</h4>
-				<div class="preview"><a href="http://www.lipsum.com/">Lorem ipsum</a> dolor sit amet, consectetur adipiscing elit. <a href="#">...</a></div>
-				<div class="labels"><a class="label" href="#">facebook</a></div>
-			</li>
-			<!-- TODO fill in items with hogan.js -->
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
+			
 		</ul>
 	</div>
 	
