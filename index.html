@@ -4,10 +4,10 @@
 	<title>Relabel</title>
 	
 	<!-- jQuery UI styles: included first so they can be overridden -->
-	<link rel="stylesheet/css" type="text/css" href="assets/css/jquery-ui.css" />
+	<link rel="stylesheet/css" type="text/css" href="/assets/css/smoothness/jquery-ui.css" />
 	
 	<!-- The less stylesheets -->
-	<link rel="stylesheet/less" type="text/css" href="assets/less/styles.less" />
+	<link rel="stylesheet/less" type="text/css" href="/assets/less/styles.less" />
 	
 	<!-- The less compiler: include all less files BEFORE the compiler -->
 	<script src="assets/js/less.min.js"></script>
@@ -16,15 +16,29 @@
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery-ui.min.js"></script>
 	
+	<!-- bootstrap -->
+	<script src="vendor/bootstrap/js/bootstrap-modal.js"></script>
+	<!--<script src="vendor/bootstrap/js/bootstrap-popover.js"></script>-->
+
 	<!-- Hogan.js -->
 	<script src="assets/js/hogan.js"></script>
 	
-	<!-- content -->
+	<!-- content & controllers -->
 	<script src="assets/js/content.js"></script>
 	<script src="assets/js/controller.js"></script>
 	
+	<!-- templating -->
+	<script src="assets/js/messages/itemlist.js"></script>
+	<script src="assets/js/messages/messageHeader.js"></script>
+	<script src="assets/js/messages/twitter.js"></script>
+	
 	<script type="text/javascript">
     $(document).ready(function() {
+        $('.modal').modal({show: false});
+        $('.modal > .modal-footer > .btn-close').on('click.close', function() {
+            $('#' + this.getAttribute('data-id')).modal('hide');
+        });
+    
         $(".toggle-group:not(.items-list) > li").on('click.updatefilters', function() {
             toggleListItems(this.getAttribute('data-list'));
         });
@@ -66,12 +80,23 @@
 	
 	<div id="items-panel">
 		<ul id="items-list" class="toggle-group">
-			
 		</ul>
 	</div>
 	
 	<div id="preview-panel">
-
 	</div>
+	
+	<div class="modal fade" id="content_not_available">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">&times;</a>
+            <h3>Not available</h3>
+        </div>
+        <div class="modal-body">
+            <p>This part of the UI is not available yet&hellip;</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" data-id="content_not_available" class="btn btn-primary btn-close">Close</a>
+        </div>
+    </div>
 </body>
 </html>
