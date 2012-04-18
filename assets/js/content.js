@@ -2,10 +2,15 @@ var messages = [];
 
 function addMessage(message) {
     message.id = messages.push(message);
+    
+    $(message.labels).each(function() {
+        addLabel(this);
+    });
 }
 
 function getMessage(id) { return messages[id - 1]; }
 
+$(document).ready(function() {
 // ID 1
 addMessage({
     short_from: 'Mystery Man',
@@ -18,8 +23,8 @@ addMessage({
     location: 'inbox',
     read_later: -1,
     labels: [
-        { label: 'facebook' },
-        { label: 'lipsum' }
+        { label: 'facebook', pretty: 'Facebook' },
+        { label: 'lipsum', pretty: 'Lipsum' }
     ]
 });
 
@@ -33,8 +38,8 @@ addMessage({
     location: 'inbox',
     read_later: -1,
     labels: [
-        { label: 'twitter' },
-        { label: 'chikul12' }
+        { label: 'twitter', pretty: 'Twitter' },
+        { label: 'chikul12'}
     ],
     reply: 3
 });
@@ -49,9 +54,11 @@ addMessage({
     location: 'archive',
     read_later: -1,
     labels: [
-        { label: 'twitter' },
+        { label: 'twitter', pretty: 'Twitter' },
         { label: 'chikul12' }
     ],
     reply_to: 2,
     read: true
+});
+
 });
