@@ -10,8 +10,4 @@ function addLabel(label) {
         name: label.pretty || label.label,
         id: label.label,
     }));
-    
-    $('li[data-list=label-' + label.label + ']').on('click.updatefilters', function() {
-        toggleListItems(this.getAttribute('data-list'));
-    });
 }
