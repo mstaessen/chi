@@ -3,7 +3,7 @@ var listItemTemplate = Hogan.compile(
     <img src="http://www.gravatar.com/avatar/?d=mm&s=48" alt="profile picture" />\n\
 	<h4>{{short_from}}</h4>\n\
 	<div class="preview">{{{short_content}}}</div>\n\
-	<div class="labels">{{#labels}}<a class="label" href="#">{{label}}</a>{{/labels}}</div>\n\
+	<div class="labels">{{#labels}}<a data-label="label-{{label}}" class="label" href="#">{{label}}</a>{{/labels}}</div>\n\
 </li>'
 );
 
@@ -43,6 +43,30 @@ function toggleListItems(name) {
     updateListItems();
 }
 
+function untoggleListItems(){
+    if(_filter!=false){
+     $('*> li[data-list="'+_filter+'"]').removeClass("active");
+      _filter = false;
+    }
+    if (_source_filter != flag){
+      $('*> li[data-list="source-'+_source_filter+'"]').removeClass("active");
+      _source_filter = false;
+    }
+    if (_label_filter != flag){
+      $('*> li[data-list="label-'+_label_filter+'"]').removeClass("active");
+      _label_filter = false;
+    }
+}
+
+
+
+function toggleLabel(label){
+    untoggleListItems();
+    _label_filter= label.replace(/^label-/,'');     
+    $('*> li[data-list="label-'+_label_filter+'"]').addClass("active");
+    updateListItems();
+}
+
 function updateListItems() {
     console.log('updating list items');
 
@@ -77,7 +101,12 @@ function updateListItems() {
         message = this.getAttribute('data-item-id');
         toggleMessage(message);
     }
-    
     $('#items-list > li').on('click.showmessage', fn);
     $('#items-list > li > a.more').on('click.showmessage', fn);
+    $('#items-list > li > .labels >.label').click(function(event){
+        event.stopPropagation();
+        label = this.getAttribute('data-label');
+	toggleLabel(label);
+    });
+    
 }
