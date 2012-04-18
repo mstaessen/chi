@@ -19,7 +19,8 @@ function showTwitterMsg(message) {
     html += '\n';
     html += twitter_handleNext(message);
     
-    $('#preview-panel')[0].innerHTML += html;
+    $(html).insertAfter($('#preview-panel > .header'));
+    
     $('#preview-panel > #message-' + message.id).addClass('active');
     
     $('#preview-panel > .twitter > .controls > .control.reply').on('click.reply', twitter_reply);
