@@ -25,8 +25,6 @@ function showHeader(options) {
         trigger: 'manual',
         title: 'Pick a date'
     });
-    
-    console.log($('.popover.bottom > .popover-inner > .popover-content > p').datepicker());
 }
 
 function getDelay(val) {

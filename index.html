@@ -40,6 +40,11 @@
         $(".toggle-group:not(.items-list) > li").on('click.updatefilters', function() {
             toggleListItems(this.getAttribute('data-list'));
         });
+        
+        $("#home").on('click.home', function() {
+            $('#labels-panel > .nav > .active').click();
+            $('li[data-list=inbox]').click();
+        });
 	
         toggleListItems('inbox');
 	    updateToggleGroups();
@@ -50,6 +55,11 @@
 </head>
 <body>
 	<div id="labels-panel">
+	    <br />
+	    <ul class="nav nav-list">
+	        <li id="home"><a href="#"><i class="icon-home"></i> Home</a></li>
+        </ul>
+
 		<ul	class="nav nav-list toggle-group">
 			<li class="active" data-list="inbox"><a href="#"><i class="icon-inbox"></i> Inbox</a></li>
 			<li data-list="outbox"><a href="#"><i class="icon-arrow-up"></i> Outbox</a></li>
