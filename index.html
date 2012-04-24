@@ -33,6 +33,12 @@
 	
 	<script type="text/javascript">
     $(document).ready(function() {
+		$('*> li[data-list="archive"]').droppable({
+			drop:function( event, ui ){
+				label=ui.draggable.attr('data-item-id');
+				archive(label);
+			}
+		});
         $('.modal').modal({show: false});
         $('.modal > .modal-footer > .btn-close').on('click.close', function() {
             $('#' + this.getAttribute('data-id')).modal('hide');

@@ -2,6 +2,17 @@ var headerTemplate = Hogan.compile(
 '<div class="header">\n\
 <div class="readlater"><div class="slider"></div><div class="label"></div></div>\n\
 <div class="calendar"></div>\n\
+<div class="btn-toolbar" >\n\
+	<div class="btn-group">\n\
+		<a class="btn btn-primary" href="#"> Add Label</a>\n\
+		<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>\n\
+		<ul class="dropdown-menu"></ul>\n\
+	</div>\n\
+	<a class="btn btn-primary" href="#">\n\
+	<i class="icon-folder-open icon-white"></i> Archive</a>\n\
+	<a class="btn btn-primary" href="#">\n\
+	<i class="icon-trash icon-white"></i> Delete</a>\n\
+</div>\n\
 </div>'
 );
 

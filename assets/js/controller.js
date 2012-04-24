@@ -4,6 +4,10 @@ function contentNotAvailable() {
     $('#content_not_available').modal('show');
 }
 
+function addLabel(mid, label){
+
+}
+
 function setLocation(mid, location) {
     getMessage(mid).location = location;
     updateListItems();

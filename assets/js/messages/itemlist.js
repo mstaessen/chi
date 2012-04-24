@@ -4,6 +4,7 @@ var listItemTemplate = Hogan.compile(
 	<h4>{{short_from}}</h4>\n\
 	<div class="preview">{{{short_content}}}</div>\n\
 	<div class="labels">{{#labels}}<a data-label="label-{{label}}" class="label" href="#">{{label}}</a>{{/labels}}</div>\n\
+	<i class="icon-ok"></i>\n\
 </li>'
 );
 
@@ -67,6 +68,10 @@ function toggleLabel(label){
     updateListItems();
 }
 
+function addDraggable(){
+	$('#items-list > li').draggable({revert:true,opacity:0.7, helper:'clone'});
+}
+
 function updateListItems() {
     console.log('updating list items');
 
@@ -92,7 +97,7 @@ function updateListItems() {
         }
         return '';
     }).join('\n');
-    
+    addDraggable();
     if(_active_item) {
         $('#items-list > #item-' + _active_item).addClass('active');
     }
@@ -107,6 +112,11 @@ function updateListItems() {
         event.stopPropagation();
         label = this.getAttribute('data-label');
 	toggleLabel(label);
+    });
+	$('#items-list > li > i.icon-ok').click(function(event){
+        event.stopPropagation();
+        label = this.parentNode.getAttribute('data-item-id');
+	    archive(label);
     });
     
 }
