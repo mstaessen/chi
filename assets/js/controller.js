@@ -4,9 +4,6 @@ function contentNotAvailable() {
     $('#content_not_available').modal('show');
 }
 
-function addLabel(mid, label){
-
-}
 
 function setLocation(mid, location) {
     getMessage(mid).location = location;
@@ -50,16 +47,8 @@ function hideMessage() {
     $('#preview-panel')[0].innerHTML = '';
 }
 
-function toggleMessage(mid) {
-    hideMessage();
-    if(_active_item == mid) {
-        console.log('hiding message ' + mid);
-        _active_item = false;
-        return;
-    }
-    
-    markRead(mid);
-    console.log('showing message ' + mid);
+function showMessage(mid){
+	console.log('showing message ' + mid);
     message = getMessage(mid);
     _active_item = mid;
     
@@ -75,3 +64,19 @@ function toggleMessage(mid) {
         contentNotAvailable();
     }
 }
+
+function toggleMessage(mid) {
+    hideMessage();
+    if(_active_item == mid) {
+        console.log('hiding message ' + mid);
+        _active_item = false;
+        return;
+    }
+    
+    markRead(mid);
+    showMessage(mid);
+}
+
+
+
+

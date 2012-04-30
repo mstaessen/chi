@@ -17,6 +17,7 @@
 	<script src="vendor/bootstrap/js/bootstrap-modal.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap-tooltip.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap-popover.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap-dropdown.js"></script>
 
 	<!-- Hogan.js -->
 	<script src="assets/js/hogan.js"></script>
@@ -29,19 +30,34 @@
 	<!-- templating -->
 	<script src="assets/js/messages/itemlist.js"></script>
 	<script src="assets/js/messages/messageHeader.js"></script>
+	<script src="assets/js/messages/headerToolbar.js"></script>
 	<script src="assets/js/messages/twitter.js"></script>
 	
 	<script type="text/javascript">
     $(document).ready(function() {
+		$('#label-group')['append'](renderLabels());
 		$('*> li[data-list="archive"]').droppable({
 			drop:function( event, ui ){
 				label=ui.draggable.attr('data-item-id');
 				archive(label);
 			}
 		});
+		$('#label-group > li[data-list|="label"]').droppable({
+			drop:function( event, ui ){
+				mid=ui.draggable.attr('data-item-id');
+				label=this.getAttribute('data-list');
+				addLabelToMessage(mid,label.replace(/^label-/,''));
+			}
+		});
         $('.modal').modal({show: false});
         $('.modal > .modal-footer > .btn-close').on('click.close', function() {
             $('#' + this.getAttribute('data-id')).modal('hide');
+        });
+		$('.modal > .modal-footer > .btn-save').on('click.save', function() {
+            $('#' + this.getAttribute('data-id')).modal('hide');
+			var newLabel=$('.modal > .modal-body > input').val();
+			addNewLabel(_active_item,newLabel);
+			$('.modal > .modal-body > input').val("");
         });
     
         $(".toggle-group:not(.items-list) > li").on('click.updatefilters', function() {
@@ -52,7 +68,6 @@
             $('#labels-panel > .nav > .active').click();
             $('li[data-list=inbox]').click();
         });
-	
         toggleListItems('inbox');
 	    updateToggleGroups();
     });
@@ -111,6 +126,21 @@
         </div>
         <div class="modal-footer">
             <a href="#" data-id="content_not_available" class="btn btn-primary btn-close">Close</a>
+        </div>
+    </div>
+	
+	<div class="modal fade" id="add_new_label">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">&times;</a>
+            <h3>Add a new label to the message</h3>
+        </div>
+        <div class="modal-body">
+				<label>Enter new label name:</label>
+				<input type="text" placeholder="New Label…">
+        </div>
+        <div class="modal-footer">
+			<a href="#" data-id="add_new_label" class="btn btn-close">Close</a>
+			<button type="submit" data-id="add_new_label" class="btn btn-primary btn-save">Save changes</button>
         </div>
     </div>
 </body>
