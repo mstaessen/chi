@@ -119,4 +119,5 @@ function updateListItems() {
 	    archive(label);
     });
     
+    if(updateToggleGroups) updateToggleGroups();
 }
