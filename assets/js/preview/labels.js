@@ -1,26 +1,5 @@
-var headerToolbarTemplate = Hogan.compile(
-'<div class="btn-toolbar" >\n\
-	<div class="btn-group">\n\
-		<a class="btn btn-primary" href="#"> Add Label</a>\n\
-		<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>\n\
-		<ul class="dropdown-menu">\n\
-			<li data-list="new-label"><a href="#">New Label</a></li>\n\
-			<li class="divider"></li>\n\
-		</ul>\n\
-	</div>\n\
-	<div class="btn-group">\n\
-	<a class="btn btn-primary" data-btn-id="archive" href="#">\n\
-	<i class="icon-folder-open icon-white"></i> Archive</a>\n\
-	</div>\n\
-	<div class="btn-group">\n\
-	<a class="btn btn-primary" data-btn-id="trash" href="#">\n\
-	<i class="icon-trash icon-white"></i> Delete</a>\n\
-	</div>\n\
-</div>'
-);
-
 function preview_labels(message){
-		$('#rlabels').html(headerToolbarTemplate.render());
+		$('#rlabelsctn').html(labelsTemplate.render());
 		$('#preview-panel > .header > .headerToolbar > .btn-toolbar > .btn-group > .dropdown-menu')['append'](renderLabels());
 		$('#preview-panel > .header > .headerToolbar > .btn-toolbar > .btn-group > .btn[data-btn-id=archive]').click(function(event){
 			archive(_active_item);
@@ -40,6 +19,23 @@ function preview_labels(message){
 		});
 }
 
-
-
-
+// TODO just render labels and an add new label button.
+var labelsTemplate = Hogan.compile(
+'<div class="btn-toolbar" >\n\
+	<div class="btn-group">\n\
+		<a class="btn btn-primary" href="#"> Add Label</a>\n\
+		<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>\n\
+		<ul class="dropdown-menu">\n\
+			<li data-list="new-label"><a href="#">New Label</a></li>\n\
+			<li class="divider"></li>\n\
+		</ul>\n\
+	</div>\n\
+	<div class="btn-group">\n\
+	<a class="btn btn-primary" data-btn-id="archive" href="#">\n\
+	<i class="icon-folder-open icon-white"></i> Archive</a>\n\
+	</div>\n\
+	<div class="btn-group">\n\
+	<a class="btn btn-primary" data-btn-id="trash" href="#">\n\
+	<i class="icon-trash icon-white"></i> Delete</a>\n\
+	</div>\n\
+</div>');
