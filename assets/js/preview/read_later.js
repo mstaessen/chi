@@ -1,6 +1,7 @@
 function preview_read_later(message) {
-	delay = 0; // TODO get delay value from message.read_later 
-	$('#rrlctn').html(readlaterTemplate.render(delay));
+	$('#rrlctn').html(readlaterTemplate.render({
+		delay: getDelay(message.read_later)
+	}));
 	$('#rrlslider').slider({
 		range : false,
 		min : 0,
@@ -12,23 +13,19 @@ function preview_read_later(message) {
 		}
 	});
 	
-	$('#preview-panel > .header > .readlater > div > a').hover(function() {
-		clearTimeout(t);
-		showPopover();
-	}, function() {
-		clearTimeout(t);
-		t = setTimeout('hidePopover()', timeoutTime);
-	});
-	$('#rrllabel').html(getDelay(0));
-	
-	$('#preview-panel > .header > .readlater > div > a').popover({
-		placement : 'bottom',
-		trigger : 'manual',
-		title : 'Pick a date',
-		content : function() {
-			return '<input id="datefield" class="input uneditable-input"></input><div id="datepicker"></div>'
+	$("#rrlcalendar").datepicker({
+		altField : "#datefield",
+		altFormat : "DD, d MM, yy",
+		minDate : 1,
+		defaultDate : +1,
+		onSelect : function(dateText, inst) {
+			console.log(dateText + " selected");
+			date = $('#rrlcalendar').datepicker("getDate");
+			setDelay();
+			setReadLater(false);
 		}
 	});
+	
 	if (getMessage(_active_item).read_later !== -1) {
 		date = getMessage(_active_item).read_later;
 		setDelay();
@@ -39,42 +36,27 @@ function preview_read_later(message) {
 
 var t;
 var timeoutTime = 3000;
-var datepickerOptions = {
-	altField : "#datefield",
-	altFormat : "DD, d MM, yy",
-	minDate : 1,
-	defaultDate : +1,
-	onSelect : function(dateText, inst) {
-		console.log(dateText + " selected");
-		date = $('#datepicker').datepicker("getDate");
-		setDelay();
-		setReadLater(false);
-	}
-};
 var date;
 
 function updateSlider(event, ui) {
 	if (ui.value > 24) {
-		date = new Date((ui.value - 23) * 86400000
-				+ new Date().getTime());
+		date = new Date((ui.value - 23) * 86400000 + new Date().getTime());
 	} else {
-		date = new Date((ui.value) * 3600000
-				+ new Date().getTime())
+		date = new Date((ui.value) * 3600000 + new Date().getTime())
 	}
 	$('#rrllabel').html(createLabel(getDelay(ui.value), date));
 	setReadLater(!ui.value);
 	clearTimeout(t);
-	showPopover();
-	t = setTimeout('hidePopover()', timeoutTime);
+	showCalendar();
+	t = setTimeout('hideCalendar()', timeoutTime);
 }
 
 function createLabel(delay, date) {
 	return delay + '  ' + $.datepicker.formatDate('DD, d MM, yy', date);
 }
 
-
 function getDelay(val) {
-	if (!val)
+	if (val <= 0)
 		return 'now';
 	if (val <= 24)
 		return val + ' hours';
@@ -109,25 +91,21 @@ function setDelay() {
 	$('#rrllabel').html(createLabel(getDelay(value), date));
 }
 
-function showPopover() {
+function showCalendar() {
 	var value = $('#rrlslider').slider("value");
 	if (value < 23) {
 		return;
 	}
-	datepickerOptions.defaultDate = value;
-	$('#preview-panel > .header > .readlater > div > a').popover('show');
-	$('#datepicker').datepicker(datepickerOptions);
-	$('#datepicker').datepicker("setDate", date)
-	$('.popover').hover(function() {
-		clearTimeout(t);
-	}, function() {
-		clearTimeout(t);
-		t = setTimeout('hidePopover()', timeoutTime);
+	
+	$("rrlcalendar").show({
+		effect: "blind"
 	});
 }
 
-function hidePopover() {
-	$('#preview-panel > .header > .readlater > div > a').popover('hide');
+function hideCalendar() {
+	$("rrlcalendar").hide({
+		effect: "blind"
+	});
 }
 
 function setReadLater(undo) {
@@ -144,12 +122,12 @@ function setReadLater(undo) {
 }
 
 var readlaterTemplate = Hogan.compile('<h6>&diams; Read Later &diams;</h6>\n\
-<div class="rrlcontrols">\n\
-\t<div class="rrlsliderctn">\n\
-\t\t<div id="rrlslider"></div>\n\
-\t</div>\n\
+<div id="rrlcontrols">\n\
 \t<div class="rrllabelctn">\n\
 \t\t<div id="rrllabel">{{delay}}</div>\n\
+\t</div>\n\
+\t<div class="rrlsliderctn">\n\
+\t\t<div id="rrlslider"></div>\n\
 \t</div>\n\
 </div>\n\
 <div class="rrlcalendarctn">\n\
