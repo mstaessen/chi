@@ -1,6 +1,6 @@
 function preview_read_later(message) {
 	delay = 0; // TODO get delay value from message.read_later 
-	$('#preview-panel').html(readlaterTemplate.render(delay));
+	$('#rrlctn').html(readlaterTemplate.render(delay));
 	$('#rrlslider').slider({
 		range : false,
 		min : 0,
@@ -143,17 +143,15 @@ function setReadLater(undo) {
 	}
 }
 
-var readlaterTemplate = Hogan.compile('<div class="rrlctn">\n\
-\t<h6>&diams; Read Later &diams;</h6>\n\
-\t<div class="rrlcontrols">\n\
-\t\t<div class="rrlsliderctn">\n\
-\t\t\t<div id="rrlslider"></div>\n\
-\t\t</div>\n\
-\t\t<div class="rrllabelctn">\n\
-\t\t\t<div id="rrllabel">{{delay}}</div>\n\
-\t\t</div>\n\
+var readlaterTemplate = Hogan.compile('<h6>&diams; Read Later &diams;</h6>\n\
+<div class="rrlcontrols">\n\
+\t<div class="rrlsliderctn">\n\
+\t\t<div id="rrlslider"></div>\n\
 \t</div>\n\
-\t<div class="rrlcalendarctn">\n\
-\t\t<div id="rrlcalendar"></div>\n\
+\t<div class="rrllabelctn">\n\
+\t\t<div id="rrllabel">{{delay}}</div>\n\
 \t</div>\n\
+</div>\n\
+<div class="rrlcalendarctn">\n\
+\t<div id="rrlcalendar"></div>\n\
 </div>');
