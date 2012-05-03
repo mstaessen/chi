@@ -35,7 +35,7 @@ function addLabelToMessage(mid, labelName){
     }
 	updateListItems();
 	if(mid===_active_item){
-		showMessage(_active_item);
+		previewMessage(_active_item);
 	}
 	
 }
@@ -46,7 +46,7 @@ function addNewLabel(mid,labelName){
 	addLabel(label);
 	addLabelToMessage(mid,labelName);
 	updateListItems();
-	showMessage(_active_item);
+	previewMessage(_active_item);
 	$('#label-group')['append'](labelTemplate.render(label));
 	$(".toggle-group:not(.items-list) > li[data-list=label-"+labelName+"]").on('click.updatefilters', function() {
             toggleListItems(this.getAttribute('data-list'));

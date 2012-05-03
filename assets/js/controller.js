@@ -44,25 +44,7 @@ function markUnread(mid) {
 }
 
 function hideMessage() {
-    $('#preview-panel')[0].innerHTML = '';
-}
-
-function showMessage(mid){
-	console.log('showing message ' + mid);
-    message = getMessage(mid);
-    _active_item = mid;
-    
-    showHeader({});
-    
-    if (message.source == 'twitter') {
-        showTwitterMsg(message);
-    } else if (message.source == 'facebook') {
-    
-    } else if (message.source == 'email') {
-    
-    } else {
-        contentNotAvailable();
-    }
+    $('#preview-panel').html('');
 }
 
 function toggleMessage(mid) {
@@ -74,7 +56,7 @@ function toggleMessage(mid) {
     }
     
     markRead(mid);
-    showMessage(mid);
+    previewMessage(mid);
 }
 
 

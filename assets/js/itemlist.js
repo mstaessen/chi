@@ -106,8 +106,8 @@ function updateListItems() {
         message = this.getAttribute('data-item-id');
         toggleMessage(message);
     }
-    $('#items-list > li').on('click.showmessage', fn);
-    $('#items-list > li > a.more').on('click.showmessage', fn);
+    $('#items-list > li').on('click.previewmessage', fn);
+    $('#items-list > li > a.more').on('click.previewmessage', fn);
     $('#items-list > li > .labels >.label').click(function(event){
         event.stopPropagation();
         label = this.getAttribute('data-label');

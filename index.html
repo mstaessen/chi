@@ -26,16 +26,19 @@
 	<script src="assets/js/labels.js"></script>
 	<script src="assets/js/content.js"></script>
 	<script src="assets/js/controller.js"></script>
+	<script src="assets/js/itemlist.js"></script>
 	
-	<!-- templating -->
-	<script src="assets/js/messages/itemlist.js"></script>
-	<script src="assets/js/messages/messageHeader.js"></script>
-	<script src="assets/js/messages/headerToolbar.js"></script>
-	<script src="assets/js/messages/twitter.js"></script>
+	<!-- Message Previews -->
+	<script src="assets/js/preview.js"></script>
+	<script src="assets/js/preview/controls.js"></script>
+	<script src="assets/js/preview/labels.js"></script>
+	<script src="assets/js/preview/read_later.js"></script>
+	<script src="assets/js/preview/replies.js"></script>
+	<script src="assets/js/preview/text.js"></script>
 	
 	<script type="text/javascript">
     $(document).ready(function() {
-		$('#label-group')['append'](renderLabels());
+		$('#label-group').append(renderLabels());
 		$('*> li[data-list="archive"]').droppable({
 			drop:function( event, ui ){
 				label=ui.draggable.attr('data-item-id');
@@ -43,7 +46,7 @@
 			}
 		});
 		$('#label-group > li[data-list|="label"]').droppable({
-			drop:function( event, ui ){
+			drop:function(event, ui){
 				mid=ui.draggable.attr('data-item-id');
 				label=this.getAttribute('data-list');
 				addLabelToMessage(mid,label.replace(/^label-/,''));

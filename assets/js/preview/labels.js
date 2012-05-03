@@ -19,8 +19,8 @@ var headerToolbarTemplate = Hogan.compile(
 </div>'
 );
 
-function showHeaderToolbar(){
-		$('#preview-panel > .header > .headerToolbar')[0].innerHTML = headerToolbarTemplate.render();
+function preview_labels(message){
+		$('#rlabels').html(headerToolbarTemplate.render());
 		$('#preview-panel > .header > .headerToolbar > .btn-toolbar > .btn-group > .dropdown-menu')['append'](renderLabels());
 		$('#preview-panel > .header > .headerToolbar > .btn-toolbar > .btn-group > .btn[data-btn-id=archive]').click(function(event){
 			archive(_active_item);
@@ -37,10 +37,7 @@ function showHeaderToolbar(){
 			console.log('add label '+label+' to the message')
 			addLabelToMessage(_active_item,label.replace(/^label-/,''));
 			updateListItems();
-			showMessage(_active_item);
 		});
-		
-		
 }
 
 
