@@ -26,6 +26,17 @@ function preview_read_later(message) {
 		}
 	});
 	
+	$('#rrlctn').hover(function() {
+		$('#rrlcontrols').show({
+			effect: "blind"
+		});
+	}, function() {
+		// TODO don't hide when the slider is still selected
+		$('#rrlcontrols').hide({
+			effect: "blind"
+		});
+	});
+	
 	if (getMessage(_active_item).read_later !== -1) {
 		date = getMessage(_active_item).read_later;
 		setDelay();

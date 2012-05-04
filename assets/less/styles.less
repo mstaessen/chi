@@ -113,30 +113,56 @@ html, body, #labels-panel, #items-panel {
     float: right;
 }
 
+/* PREVIEW */
 
-#preview-panel > .header {
+#preview {
+	width: 100%;
+}
+
+/* PREVIEW HEADER */
+
+#preview > header {
     display: block;
-    float: left;
     width: 100%;
-    margin: 4px;
-    height: 128px;
     border-bottom: 1px solid #f0f0f0;
 }
 
-#preview-panel > .header > .readlater {
-    width: 50%;
+#preview > header h6 {
+	text-align: center;
 }
 
-#preview-panel > .header > .readlater > .label {
-    line-height: 18px;
-    height: 20px;
+#rrlcontrols {
+	display: none;
+	margin: 0px 16px;
 }
 
-#preview-panel > .header > .calendar {
-    /*display: none;*/
-    z-index: 300;
+#rrlcontrols .rrllabelctn {
+	float: left;
+	width: 20%;
+	display: block;
+	text-align: right;
 }
 
+#rrlcontrols .rrlsliderctn {
+	float: right;
+	width: 80%;
+	display: block;
+}
+
+#rrlcalendar {
+	display: none;
+}
+
+/* PREVIEW LABELS */
+
+
+/* PREVIEW CONTROLS */
+
+#rcontrolsctn {
+	clear: both;
+}
+
+/* PREVIEW TEXT */
 
 #preview-panel > div.twitter {
     display: block;
@@ -208,3 +234,6 @@ html, body, #labels-panel, #items-panel {
     margin-right: 4px;
     color: @black;
 }
+
+
+/* PREVIEW REPLIES */
