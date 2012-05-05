@@ -4,7 +4,7 @@ var listItemTemplate = Hogan.compile(
 	<h4>{{short_from}}</h4>\n\
 	<div class="preview">{{{short_content}}}</div>\n\
 	<div class="labels">{{#labels}}<a data-label="label-{{label}}" class="label" href="#">{{label}}</a>{{/labels}}</div>\n\
-	<i class="icon-ok"></i>\n\
+	<a class="archive"><i class="icon-ok"></i></a>\n\
 </li>'
 );
 

@@ -63,7 +63,7 @@ function updateSlider(event, ui) {
 }
 
 function createLabel(delay, date) {
-	return delay + '  ' + $.datepicker.formatDate('DD, d MM, yy', date);
+	return delay + '  ' + $.datepicker.formatDate('DD, d MM', date);
 }
 
 function getDelay(val) {
@@ -108,15 +108,21 @@ function showCalendar() {
 		return;
 	}
 	
-	$("rrlcalendar").show({
-		effect: "blind"
-	});
+	calendar = $("#rrlcalendar");
+	if(calendar.css("display") == "none") {
+		$("#rrlcalendar").show({
+			effect: "blind"
+		});
+	}
 }
 
 function hideCalendar() {
-	$("rrlcalendar").hide({
-		effect: "blind"
-	});
+	calendar = $("#rrlcalendar");
+	if(calendar.css("display") != "none") {
+		$("#rrlcalendar").hide({
+			effect: "blind"
+		});
+	}
 }
 
 function setReadLater(undo) {
@@ -140,7 +146,7 @@ var readlaterTemplate = Hogan.compile('<h6>&diams; Read Later &diams;</h6>\n\
 \t<div class="rrlsliderctn">\n\
 \t\t<div id="rrlslider"></div>\n\
 \t</div>\n\
-</div>\n\
-<div class="rrlcalendarctn">\n\
-\t<div id="rrlcalendar"></div>\n\
+\t<div class="rrlcalendarctn">\n\
+\t\t<div id="rrlcalendar"></div>\n\
+\t</div>\n\
 </div>');

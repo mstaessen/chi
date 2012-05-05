@@ -43,6 +43,7 @@ html, body, #labels-panel, #items-panel {
 	width: 249px;
 	border-bottom: 1px solid #f0f0f0;
 	background-color: @white;
+	position: relative;
 }
 
 #items-list > li.unread {
@@ -108,9 +109,11 @@ html, body, #labels-panel, #items-panel {
     margin-right: 2px;
 }
 
-#items-list > li > i.icon-ok{
+#items-list > li a.archive {
     display: block;
-    float: right;
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
 }
 
 /* PREVIEW */
@@ -133,27 +136,48 @@ html, body, #labels-panel, #items-panel {
 
 #rrlcontrols {
 	display: none;
-	margin: 0px 16px;
+	margin: 0px 8px;
+}
+
+#rrlcontrols .rrllabelctn,
+#rrlcontrols .rrlsliderctn {
+	display: block;
+}
+
+#rrllabel, 
+#rrlslider {
+	margin: 8px;
 }
 
 #rrlcontrols .rrllabelctn {
 	float: left;
 	width: 20%;
-	display: block;
 	text-align: right;
 }
 
 #rrlcontrols .rrlsliderctn {
 	float: right;
 	width: 80%;
-	display: block;
+}
+
+#rrlcontrols .rrlcalendarctn {
+	clear: both;
+	margin-top: 8px;
+	position: relative;
 }
 
 #rrlcalendar {
 	display: none;
+	position: absolute;
+	right: 0px;
 }
 
 /* PREVIEW LABELS */
+
+#rlabelsctn {
+	clear: both;
+	margin-top: 4px;	
+}
 
 
 /* PREVIEW CONTROLS */
