@@ -63,7 +63,7 @@ function updateSlider(event, ui) {
 }
 
 function createLabel(delay, date) {
-	return delay + '  ' + $.datepicker.formatDate('DD, d MM', date);
+	return delay + '  ' + $.datepicker.formatDate('D, d MM', date);
 }
 
 function getDelay(val) {
@@ -138,15 +138,17 @@ function setReadLater(undo) {
 	}
 }
 
-var readlaterTemplate = Hogan.compile('<h6>&diams; Read Later &diams;</h6>\n\
+var readlaterTemplate = Hogan.compile(
+'<h6>&diams; Read Later &diams;</h6>\n\
 <div id="rrlcontrols">\n\
-\t<div class="rrllabelctn">\n\
-\t\t<div id="rrllabel">{{delay}}</div>\n\
-\t</div>\n\
-\t<div class="rrlsliderctn">\n\
-\t\t<div id="rrlslider"></div>\n\
-\t</div>\n\
-\t<div class="rrlcalendarctn">\n\
-\t\t<div id="rrlcalendar"></div>\n\
-\t</div>\n\
-</div>');
+	<div class="rrllabelctn">\n\
+		<div id="rrllabel">{{delay}}</div>\n\
+	</div>\n\
+	<div class="rrlsliderctn">\n\
+		<div id="rrlslider"></div>\n\
+	</div>\n\
+	<div class="rrlcalendarctn">\n\
+		<div id="rrlcalendar"></div>\n\
+	</div>\n\
+</div>'
+);

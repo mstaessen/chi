@@ -103,7 +103,7 @@ html, body, #labels-panel, #items-panel {
 
 
 #items-list > li.unread {
-    background-color: #f0f0ff;
+    background-color: #f6f6f6;
 }
 
 #items-list > li:hover {
@@ -126,9 +126,6 @@ html, body, #labels-panel, #items-panel {
     background: none;
 }
 
-
-
-
 /* PREVIEW */
 
 #preview-panel {
@@ -144,11 +141,15 @@ html, body, #labels-panel, #items-panel {
 #preview > header {
     display: block;
     width: 100%;
-    border-bottom: 1px solid #f0f0f0;
 }
 
 #preview > header h6 {
 	text-align: center;
+}
+
+#rrlctn {
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #f6f6f6;
 }
 
 #rrlcontrols {
@@ -194,6 +195,27 @@ html, body, #labels-panel, #items-panel {
 #rlabelsctn {
 	clear: both;
 	margin-top: 4px;	
+}
+
+#rlabelsctn > ul {
+	list-style: none;
+	margin: 8px 16px;
+	padding: 0px;
+}
+
+#rlabelsctn > ul > li {
+ 	list-style-type: none;
+ 	display: inline-block;
+}
+
+#rlabelsctn > ul > li.label {
+	padding: 1px 4px 1px;
+	line-height: 18px;
+}
+
+#rlabelsctn > ul > li:last-child {
+	position: relative;
+	top: -1px;
 }
 
 
