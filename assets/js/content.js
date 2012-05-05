@@ -31,7 +31,7 @@ addMessage({
 // ID 2
 addMessage({
     short_from: 'Bram Gotink',
-    short_content: 'Ik vraag me af wat er op de mysterieuze slides staat... #chikul12',
+    short_content: 'Ik vraag me af wat er op de mysterieuze slides staat...',
     source: 'twitter',
     from: 'Bram Gotink (<a href="http://twitter.com/bram_gotink" target="_blank">@bram_gotink</a>)',
     content: 'Ik vraag me af wat er op de mysterieuze slides staat... <a href="https://twitter.com/#!/search/%23chikul12" target="_blank">#chikul12</a>', 

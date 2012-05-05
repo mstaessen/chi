@@ -16,35 +16,91 @@ html, body, #labels-panel, #items-panel {
 	float: left;
 }
 
+.toggle-group {
+	margin: 24px 0px;
+}
+
+
+/* ITEMS LIST*/
+
 #items-panel {
 	float: left;
 	width: 249px;
 	border-right: 1px solid #f0f0f0;
 }
 
-#preview-panel {
-	overflow: auto;
-}
-
-.toggle-group {
-	margin: 24px 0px;
-}
-
 #items-list {
 	list-style: none;
 	margin: 0px;
 	padding: 0px;
+	width: 100%;
 }
 
+/* ITEMS LIST ITEMS*/
+
 #items-list > li {
+	position: relative;
+	width: 249px;
+	height: 80px;
 	margin: 0px;
 	padding: 0px;
-	height: 78px;
-	width: 249px;
 	border-bottom: 1px solid #f0f0f0;
 	background-color: @white;
-	position: relative;
 }
+
+#items-list > li img.avatar {
+	width: 48px;
+	height: 48px;
+	position: absolute;
+	top: 16px;
+	left: 16px;
+}
+
+#items-list > li > h4 {
+	position: absolute;
+	top: 8px;
+	left: 80px;
+	font-size: 14px;
+	line-height: 14px;
+	max-width: 153px;
+}
+
+#items-list > li > div.preview {
+	position: absolute;
+	top: 30px;
+	left: 80px;
+    font-size: 10px;
+    line-height: 12px;
+    max-width: 153px;
+    margin: 0px;
+}
+
+#items-list > li > div.labels {
+	position: absolute;
+	bottom: 8px;
+	left: 80px;
+    max-width: 153px;
+    margin: 0px;
+}
+
+#items-list > li > div.labels > a.label {
+	padding: 0.72px 2.9px 1.45px;
+    font-size: 8px;
+    line-height: 10.18px;
+  	text-shadow: 0 -0.72px 0 rgba(0,0,0,.25);
+    border: 1px solid #f0f0f0;
+    background-color: #f5f5f5;
+    color: @black;
+    margin-right: 2px;
+}
+
+#items-list > li a.archive {
+    display: block;
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+}
+
 
 #items-list > li.unread {
     background-color: #f0f0ff;
@@ -60,6 +116,7 @@ html, body, #labels-panel, #items-panel {
   background-color: @linkColor;
 }
 
+
 #items-list > li.active > div.preview > a {
     color: @white;
 }
@@ -69,54 +126,14 @@ html, body, #labels-panel, #items-panel {
     background: none;
 }
 
-#items-list > li > img {
-	display: block;
-	float: left;
-	margin: 12px;
-}
 
-#items-list > li > h4 {
-	display: block;
-	float: left;
-	font-size: 14px;
-	line-height: 14px;
-	max-width: 189px;
-	margin: 12px 12px 4px 0px;
-}
 
-#items-list > li > div.preview {
-    display: block;
-    float: left;
-    font-size: 10px;
-    line-height: 12px;
-    max-width: 175px;
-    margin: 0px 0px 0px 0px;
-}
-
-#items-list > li > div.labels {
-    display: block;
-    float: left;
-    max-width: 175px;
-    margin: 0px;
-}
-
-#items-list > li > div.labels > a.label {
-    border: 1px solid #f0f0f0;
-    background-color: #f5f5f5;
-    font-size: 8px;
-    line-height: 8px;
-    color: @black;
-    margin-right: 2px;
-}
-
-#items-list > li a.archive {
-    display: block;
-    position: absolute;
-    right: 4px;
-    bottom: 4px;
-}
 
 /* PREVIEW */
+
+#preview-panel {
+	overflow: auto;
+}
 
 #preview {
 	width: 100%;

@@ -1,10 +1,10 @@
 var listItemTemplate = Hogan.compile(
-'<li id="item-{{id}}" {{^read}}class="unread"{{/read}} data-item-id="{{id}}">\n\
-    <img src="http://www.gravatar.com/avatar/?d=mm&s=48" alt="profile picture" />\n\
+'<li {{^read}}class="unread"{{/read}} data-item-id="{{id}}">\n\
+    <img class="avatar" src="http://www.gravatar.com/avatar/?d=mm&s=48" alt="profile picture" />\n\
 	<h4>{{short_from}}</h4>\n\
 	<div class="preview">{{{short_content}}}</div>\n\
 	<div class="labels">{{#labels}}<a data-label="label-{{label}}" class="label" href="#">{{label}}</a>{{/labels}}</div>\n\
-	<a class="archive"><i class="icon-ok"></i></a>\n\
+	<a href="#" class="archive"><i class="icon-ok"></i></a>\n\
 </li>'
 );
 
@@ -99,7 +99,7 @@ function updateListItems() {
     }).join('\n');
     addDraggable();
     if(_active_item) {
-        $('#items-list > #item-' + _active_item).addClass('active');
+        $('#items-list > #item[data-item-id=' + _active_item + ']').addClass('active');
     }
     
     fn = function() {
@@ -113,7 +113,7 @@ function updateListItems() {
         label = this.getAttribute('data-label');
 	toggleLabel(label);
     });
-	$('#items-list > li > i.icon-ok').click(function(event){
+	$('#items-list > li > a.archive').click(function(event){
         event.stopPropagation();
         label = this.parentNode.getAttribute('data-item-id');
 	    archive(label);
