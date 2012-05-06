@@ -52,3 +52,18 @@ function addNewLabel(mid,labelName){
             toggleListItems(this.getAttribute('data-list'));
     });
 }
+
+function removeLabelFromMessage(mid, labelName){
+	console.log('removing ' +labelName+' to message '+mid);
+	msg = getMessage(mid);
+	for ( i = 0; i < msg.labels.length; i++) {
+        if (msg.labels[i].label === labelName) {
+            msg.labels.splice(i, 1);
+        }
+    }
+	updateListItems();
+	if(mid===_active_item){
+		previewMessage(_active_item);
+	}
+}
+

@@ -1,14 +1,14 @@
 function preview_controls(message){
 		$('#rcontrolsctn').html(controlsTemplate.render());
 		
-		$('#preview-panel > .header > .headerToolbar > .btn-toolbar > .btn-group > .dropdown-menu')['append'](renderLabels());
-		$('#preview-panel > .header > .headerToolbar > .btn-toolbar > .btn-group > .btn[data-btn-id=archive]').click(function(event){
+		$(' #preview-panel > #preview > header > #rcontrolsctn > .btn-toolbar > .btn-group > .dropdown-menu')['append'](renderLabels());
+		$('#preview-panel > #preview > header > #rcontrolsctn > .btn-toolbar > .btn-group > .btn[data-btn-id=archive]').click(function(event){
 			archive(_active_item);
 		});
-		$('#preview-panel > .header > .headerToolbar > .btn-toolbar > .btn-group > .btn[data-btn-id=trash]').click(function(event){
+		$('#preview-panel > #preview > header > #rcontrolsctn > .btn-toolbar > .btn-group > .btn[data-btn-id=trash]').click(function(event){
 			trash(_active_item);
 		});
-		$('#preview-panel > .header > .headerToolbar > .btn-toolbar > .btn-group > .dropdown-menu > li').click(function(event){
+		$('#preview-panel > #preview > header > #rcontrolsctn > .btn-toolbar > .btn-group > .dropdown-menu > li').click(function(event){
 			label = this.getAttribute('data-list');
 			if(label.match("new-label")){
 			    $('#add_new_label').modal('show');

@@ -99,7 +99,8 @@ function updateListItems() {
     }).join('\n');
     addDraggable();
     if(_active_item) {
-        $('#items-list > #item[data-item-id=' + _active_item + ']').addClass('active');
+        $('#items-list > li[data-item-id=' + _active_item + ']').addClass('active');
+		console.log('setting active item');
     }
     
     fn = function() {
@@ -110,13 +111,13 @@ function updateListItems() {
     $('#items-list > li > a.more').on('click.previewmessage', fn);
     $('#items-list > li > .labels >.label').click(function(event){
         event.stopPropagation();
-        label = this.getAttribute('data-label');
-	toggleLabel(label);
+        var label = this.getAttribute('data-label');
+		toggleLabel(label);
     });
 	$('#items-list > li > a.archive').click(function(event){
         event.stopPropagation();
-        label = this.parentNode.getAttribute('data-item-id');
-	    archive(label);
+		var id = this.parentNode.getAttribute('data-item-id');
+	    archive(id);
     });
     
     if(updateToggleGroups) updateToggleGroups();
