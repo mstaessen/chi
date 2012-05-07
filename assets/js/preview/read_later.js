@@ -136,6 +136,7 @@ function setReadLater(undo) {
 		msg.read_later = -1;
 		setLocation(_active_item, 'inbox'); // check dit
 	}
+	saveMessage(msg);
 }
 
 var readlaterTemplate = Hogan.compile(

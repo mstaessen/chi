@@ -2,9 +2,10 @@ var labelTemplate = Hogan.compile(
 '<li data-list="label-{{label}}"><a href="#"><i class="icon-"></i>{{#pretty}}{{pretty}}{{/pretty}}{{^pretty}}{{label}}{{/pretty}}</a></li>'
 );
 
-var labels=[];
+
 
 function addLabel(label) {
+	var labels=storage.getLabels();
     for ( i = 0; i < labels.length; i++) {
         if (labels[i].label === label.label) {
             return;
@@ -12,15 +13,18 @@ function addLabel(label) {
     }
 	console.log('adding new label:'+ label.label);
 	labels.push(label);
+	storage.saveLabels(labels);
 }
 
 function renderLabels(){
+	var labels=storage.getLabels();
 	return labels.map(function(label) { 
 			return labelTemplate.render(label);
 	}).join('\n');
 }
 
 function addLabelToMessage(mid, labelName){
+	var labels=storage.getLabels();
 	console.log('adding ' +labelName+' to message '+mid);
 	msg = getMessage(mid);
 	for ( i = 0; i < msg.labels.length; i++) {
@@ -33,11 +37,11 @@ function addLabelToMessage(mid, labelName){
             msg.labels.push(labels[i]);
         }
     }
+	saveMessage(msg);
 	updateListItems();
 	if(mid===_active_item){
 		previewMessage(_active_item);
 	}
-	
 }
 
 function addNewLabel(mid,labelName){
@@ -61,6 +65,7 @@ function removeLabelFromMessage(mid, labelName){
             msg.labels.splice(i, 1);
         }
     }
+	saveMessage(msg);
 	updateListItems();
 	if(mid===_active_item){
 		previewMessage(_active_item);

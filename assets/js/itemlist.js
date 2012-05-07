@@ -79,7 +79,7 @@ function updateListItems() {
         $('#items-list')[0].innerHTML = '';
         return;
     }
-    
+    var messages=getAllMessages();
     $('#items-list')[0].innerHTML = messages.map(function(message) {
         if (_filter && message.location != _filter)
             return '';

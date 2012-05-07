@@ -6,8 +6,10 @@ function contentNotAvailable() {
 
 
 function setLocation(mid, location) {
-    getMessage(mid).location = location;
-    updateListItems();
+	var msg=getMessage(mid);
+    msg.location = location;
+    saveMessage(msg);
+	updateListItems();
 }
 
 function archive(mid) {
@@ -31,6 +33,7 @@ function markRead(mid) {
     
     msg.read = true;
     $('#items-list > #item-' + mid).removeClass('unread');
+	saveMessage(msg);
 }
 
 function markUnread(mid) {
@@ -41,6 +44,7 @@ function markUnread(mid) {
 
     msg.read = false;
     $('#items-list > #item-' + mid).addClass('unread');
+	saveMessage(msg);
 }
 
 function hideMessage() {

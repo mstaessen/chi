@@ -1,14 +1,16 @@
-var messages = [];
+var storage = new Storage();
 
 function addMessage(message) {
-    message.id = messages.push(message);
+    storage.addMessage(message);
     
     $(message.labels).each(function() {
         addLabel(this);
     });
 }
 
-function getMessage(id) { return messages[id - 1]; }
+function getMessage(id) { return storage.getMessage(id); }
+function getAllMessages() { return storage.getAllMessages(); }
+function saveMessage(message) { storage.saveMessage(message); }
 
 $(document).ready(function() {
 // ID 1
