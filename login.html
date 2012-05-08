@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<title>Relabel</title>
+	
+	<!-- The less stylesheets -->
+	<link rel="stylesheet/less" type="text/css" href="assets/less/styles.less" />
+	
+	<!-- The less compiler: include all less files BEFORE the compiler -->
+	<script src="assets/js/less.min.js"></script>
+	
+	<!-- jQuery & jQuery UI -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.min.js"></script>
+	
+	<!-- bootstrap -->
+	<script src="vendor/bootstrap/js/bootstrap-modal.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap-tooltip.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap-popover.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap-dropdown.js"></script>
+
+	<!-- Hogan.js -->
+	<script src="assets/js/hogan.js"></script>
+	
+	<script src="assets/js/facebook.js"></script>
+	<script src="assets/js/storage.js"></script>
+	<script type="text/javascript">
+    $(document).ready(function() {
+		if(window.location.hash.length != 0){
+			storage.setItem("facebookToken",window.location.hash.substring(1));
+		}
+		if(storage.getItem("facebookToken")!=null){
+			var accessToken = storage.getItem("facebookToken");
+			var path = "https://graph.facebook.com/me/home?";
+			var queryParams = [accessToken, 'callback=checkLogin'];
+			var query = queryParams.join('&');
+			var url = path + query;
+			var script = document.createElement('script');
+			script.src = url;
+			document.body.appendChild(script);
+		}
+		$("#btn_facebook").click(function(event){
+			if(!$("#btn_facebook").hasClass("disabled")){
+				authenticate();
+			}
+		});
+		$("#btn_relabel").click(function(event){
+			newWindow=window.open("http://localhost/chi","_self");
+		});
+    });
+	</script>
+</head>
+<body>
+<a id="btn_facebook" class="btn btn-primary btn-large">Login on Facebook</a>
+<a id="btn_relabel" class="btn btn-primary btn-large">Login to Relabel</a>
+</body>
+</html>

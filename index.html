@@ -28,6 +28,7 @@
 	<script src="assets/js/content.js"></script>
 	<script src="assets/js/controller.js"></script>
 	<script src="assets/js/itemlist.js"></script>
+	<script src="assets/js/facebook.js"></script>
 	
 	
 	<!-- Message Previews -->
@@ -40,6 +41,7 @@
 	
 	<script type="text/javascript">
     $(document).ready(function() {
+		requestFacebookMessages();
 		$('#label-group').append(renderLabels());
 		$('*> li[data-list="archive"]').droppable({
 			drop:function( event, ui ){

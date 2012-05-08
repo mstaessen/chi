@@ -1,3 +1,5 @@
+
+
 function Storage(){
 	this.storage = localStorage;
 	this.serializer = JSON;
@@ -7,6 +9,9 @@ function Storage(){
 	if(this.storage.getItem("labels")==null){
 		labels=[];
 		this.storage.setItem("labels",this.serializer.stringify( labels ));
+	}
+	if(this.storage.getItem("facebookUpdateTime")==null){
+		this.storage.setItem("facebookUpdateTime",1075852800);
 	}
 }
 
@@ -62,5 +67,13 @@ Storage.prototype = {
 	},
 	saveLabels: function(labels){
 		this.storage.setItem("labels",this.serializer.stringify( labels ));
+	},
+	getItem:function(key){
+		return this.storage.getItem(key);
+	},
+	setItem:function(key,value){
+		this.storage.setItem(key,value);
 	}
 };
+
+var storage = new Storage();
