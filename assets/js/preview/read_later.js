@@ -38,7 +38,7 @@ function preview_read_later(message) {
 	});
 	
 	if (getMessage(_active_item).read_later !== -1) {
-		date = getMessage(_active_item).read_later;
+		date = new Date(getMessage(_active_item).read_later);
 		setDelay();
 	} else {
 		date = new Date();
@@ -129,14 +129,15 @@ function setReadLater(undo) {
 	msg = getMessage(_active_item);
 	if (!undo) {
 		msg.read_later = date;
+		storage.saveMessage(msg);
 		if (msg.location != 'readlater') {
 			setLocation(_active_item, 'readlater');
 		}
 	} else {
 		msg.read_later = -1;
+		storage.saveMessage(msg);
 		setLocation(_active_item, 'inbox'); // check dit
 	}
-	saveMessage(msg);
 }
 
 var readlaterTemplate = Hogan.compile(
