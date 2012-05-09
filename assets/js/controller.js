@@ -32,7 +32,7 @@ function markRead(mid) {
     console.log('marking ' + mid + ' as read');
     
     msg.read = true;
-    $('#items-list > #item-' + mid).removeClass('unread');
+    $('#items-list > li[data-item-id=' + mid + ']').removeClass('unread');
 	saveMessage(msg);
 }
 
@@ -43,7 +43,7 @@ function markUnread(mid) {
     console.log('marking ' + mid + ' as unread');
 
     msg.read = false;
-    $('#items-list > #item-' + mid).addClass('unread');
+    $('#items-list > li[data-item-id=' + mid + ']').addClass('unread');
 	saveMessage(msg);
 }
 
