@@ -3,7 +3,9 @@ function preview_labels(message){
 		$('#rlabelsctn > ul > li').click(function(event){
 			event.stopPropagation();
 			var label = this.getAttribute('data-label');
-			toggleLabel(label);
+			untoggleListItems();
+			$('* > li[data-list=' + label + ']').addClass('active');
+			toggleListItems(label);
 		});
 		$('#rlabelsctn > ul > li > .close').click(function(event){
 			event.stopPropagation();
@@ -19,7 +21,7 @@ function preview_labels(message){
 // TODO just render labels and an add new label button.
 var labelsTemplate = Hogan.compile(		
 '<ul>\n\
-    <li class="label">{{location}}</li>\n<li class="label">{{source}}</li>\n\
+    <li data-label="{{location}}" class="label">{{location}}</li>\n<li data-label="source-{{source}}" class="label">{{source}}</li>\n\
     {{#labels}}\n\
     <li data-label="label-{{label}}" class="label">{{label}}&nbsp;<a href="#" class="close">&times;</a></li>\n\
     {{/labels}}\n\
