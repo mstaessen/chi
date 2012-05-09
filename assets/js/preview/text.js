@@ -1,32 +1,33 @@
 function preview_text(message) {
-	template = getTemplate(message.source);
-	$('#text').html(template.render({
-		text : message.content
-	}));
+	template = getTextTemplate(message.source);
+	$('#text').html(template.render(message));
 }
 
-function getTemplate(source) {
+function getTextTemplate(source) {
 	switch (source) {
 	case 'twitter':
-		return twitterTemplate;
+		return twitterTextTemplate;
 		break;
 	case 'facebook':
-		return facebookTemplate;
+		return facebookTextTemplate;
 		break;
 	case 'mail':
-		return mailTemplate;
+		return mailTextTemplate;
 		break;
 	case 'rss':
-		return rssTemplate;
+		return rssTextTemplate;
 		break;
 	default:
-		return defaultTemplate;
+		return defaultTextTemplate;
 		break;
 	}
 }
 
-var twitterTemplate = Hogan.compile('{{{text}}}');
-var facebookTemplate = Hogan.compile('{{{text}}}');
-var mailTemplate = Hogan.compile('{{{text}}}');
-var rssTemplate = Hogan.compile('{{{text}}}');
-var defaultTemplate = Hogan.compile('{{{text}}}');
+var twitterTextTemplate = Hogan.compile('{{{text}}}');
+var facebookTextTemplate = Hogan.compile(
+'<h4>{{from.name}}</h4>\n\
+<p>{{{content}}}</p>'
+);
+var mailTextTemplate = Hogan.compile('{{{text}}}');
+var rssTextTemplate = Hogan.compile('{{{text}}}');
+var defaultTextTemplate = Hogan.compile('{{{text}}}');
