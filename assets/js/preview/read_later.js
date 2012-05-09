@@ -15,47 +15,43 @@ function preview_read_later(message) {
 	$('#rrlctn').html(readlaterTemplate.render({
 		delay: getDelay(message.read_later)
 	}));
+	renderSlider(message,true);
+
+}
+
+function renderSlider(message,autohideOn){
+	var mid=message.id;
 	$('#rrlslider').slider({
 		range : false,
 		min : 0,
 		max : 107,
-		value : 0, // TODO set value from message.read_later
+		value : 0,
 		animate : true,
 		slide : function(event, ui) {
-			updateSlider(event, ui);
+			updateSlider(event, ui,mid);
 		}
 	});
 	
-	$("#rrlcalendar").datepicker({
-		altField : "#datefield",
-		altFormat : "DD, d MM, yy",
-		minDate : 1,
-		defaultDate : +1,
-		onSelect : function(dateText, inst) {
-			console.log(dateText + " selected");
-			date = $('#rrlcalendar').datepicker("getDate");
-			setDelay();
-			setReadLater(false);
-		}
-	});
-	
-	$('#rrlctn').hover(function() {
-		if($('#rrlcontrols').css("display")=="none"){
-		  $('#rrlcontrols').show({
-			effect: "blind"
-		  });
-		}
-		clearTimeout(t2);
-	}, function() {
-		clearTimeout(t2);
-		t2=setTimeout(function(){
-		  $('#rrlcontrols').hide({
-			effect: "blind"
+	if(autohideOn){
+		$('#rrlcontrols').attr('data-autohide',"on");
+		$('#rrlctn').hover(function() {
+			if($('#rrlcontrols').css("display")=="none"){
+			  $('#rrlcontrols').show({
+				effect: "blind"
+			  });
+			}
+			clearTimeout(t2);
+		}, function() {
+			clearTimeout(t2);
+			t2=setTimeout('hideRRLControls()',timeoutTime);
 		});
-		},timeoutTime);
-		
-		
-	});
+	}
+	else{
+		$('#rrlcontrols').show({
+				effect: "blind"
+		});
+	}
+	
 	
 	$('#rrlslider > a').hover(
 		function () {
@@ -77,8 +73,8 @@ function preview_read_later(message) {
 		}
 	});
 	
-	if (getMessage(_active_item).read_later !== -1) {
-		date = new Date(getMessage(_active_item).read_later);
+	if (message.read_later !== -1) {
+		date = new Date(message.read_later);
 		setDelay();
 	} else {
 		date = new Date();
@@ -90,19 +86,17 @@ var t2;
 var timeoutTime = 3000;
 var date;
 
-function updateSlider(event, ui) {
+function updateSlider(event, ui,mid) {
 	if (ui.value > 24) {
 		date = new Date((ui.value - 23) * 86400000 + new Date().getTime());
 	} else {
 		date = new Date((ui.value) * 3600000 + new Date().getTime())
 	}
 	$('#rrllabel').html(createLabel(getDelay(ui.value), date));
-	setReadLater(!ui.value);
+	setReadLater(!ui.value,mid);
 	clearTimeout(t);
 	showPopover();
 	t=setTimeout('hidePopover()',timeoutTime);
-	//showCalendar();
-	//t = setTimeout('hideCalendar()', timeoutTime);
 }
 
 function createLabel(delay, date) {
@@ -145,28 +139,6 @@ function setDelay() {
 	$('#rrllabel').html(createLabel(getDelay(value), date));
 }
 
-function showCalendar() {
-	var value = $('#rrlslider').slider("value");
-	if (value < 23) {
-		return;
-	}
-	
-	calendar = $("#rrlcalendar");
-	if(calendar.css("display") == "none") {
-		$("#rrlcalendar").show({
-			effect: "blind"
-		});
-	}
-}
-
-function hideCalendar() {
-	calendar = $("#rrlcalendar");
-	if(calendar.css("display") != "none") {
-		$("#rrlcalendar").hide({
-			effect: "blind"
-		});
-	}
-}
 
 function showPopover(){
 	 var value = $('#rrlslider').slider( "value" );
@@ -187,11 +159,7 @@ function showPopover(){
 			clearTimeout(t);	
 			t=setTimeout('hidePopover()',timeoutTime);
 			clearTimeout(t2);
-			t2=setTimeout(function(){
-			    $('#rrlcontrols').hide({
-			    effect: "blind"
-			    });
-			 },timeoutTime);
+			t2=setTimeout('hideRRLControls()',timeoutTime);
 		}
 	);
 	if(parseInt($('.popover').css("left"))>=screen.width-300){
@@ -203,32 +171,46 @@ function hidePopover(){
 	$('#rrlslider > a').popover('hide');
 }
 
-function setReadLater(undo) {
-	msg = getMessage(_active_item);
+function hideRRLControls(){
+	if($('#rrlcontrols').attr('data-autohide')=="on"){
+		$('#rrlcontrols').hide({
+			effect: "blind"
+		});
+	}
+	 
+}
+
+function setReadLater(undo,mid) {
+	msg = getMessage(mid);
 	if (!undo) {
 		msg.read_later = date;
 		storage.saveMessage(msg);
 		if (msg.location != 'readlater') {
-			setLocation(_active_item, 'readlater');
+			setLocation(mid, 'readlater');
 		}
 	} else {
 		msg.read_later = -1;
 		storage.saveMessage(msg);
-		setLocation(_active_item, 'inbox'); // check dit
+		setLocation(mid, 'inbox'); // check dit
 	}
+}
+
+function showReadLaterModal(mid){
+	$('#read_later').modal('show');
+	var message=storage.getMessage(mid);
+	$('#read_later > .modal-body')[0].innerHTML=readlaterTemplate.render({
+		delay: getDelay(message.read_later)});
+	renderSlider(message,false);
 }
 
 var readlaterTemplate = Hogan.compile(
 '<h6>&diams; Read Later &diams;</h6>\n\
-<div id="rrlcontrols">\n\
+<div id="rrlcontrols" data-autohide="off">\n\
 	<div class="rrllabelctn">\n\
 		<div id="rrllabel">{{delay}}</div>\n\
 	</div>\n\
 	<div class="rrlsliderctn">\n\
 		<div id="rrlslider"></div>\n\
-	</div>\n\
-	<div class="rrlcalendarctn">\n\
-		<div id="rrlcalendar"></div>\n\
 	</div>\n\
 </div>'
 );

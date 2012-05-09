@@ -57,6 +57,13 @@
 				trash(label);
 			}
 		});
+		$('*> li[data-list="readlater"]').droppable({
+			hoverClass: "ui-state-active",
+			drop:function( event, ui ){
+				label=ui.draggable.attr('data-item-id');
+				 showReadLaterModal(label)
+			}
+		});
 		$('#label-group > li[data-list|="label"]').droppable({
 			hoverClass: "ui-state-active",
 			drop:function(event, ui){
@@ -144,6 +151,19 @@
             <a href="#" data-id="content_not_available" class="btn btn-primary btn-close">Close</a>
         </div>
     </div>
+
+	<div class="modal fade" id="read_later">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">&times;</a>
+            <h3>Read Later</h3>
+        </div>
+        <div class="modal-body">
+            
+        </div>
+        <div class="modal-footer">
+            <a href="#" data-id="read_later" class="btn btn-primary btn-close">Close</a>
+        </div>
+    	</div>
 	
 	<div class="modal fade" id="add_new_label">
         <div class="modal-header">
