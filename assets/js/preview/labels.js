@@ -17,7 +17,7 @@ function preview_labels(message){
 }
 
 // TODO just render labels and an add new label button.
-var labelsTemplate = Hogan.compile(
+var labelsTemplate = Hogan.compile(		
 '<ul>\n\
 	{{#labels}}\n\
 	<li data-label="label-{{label}}" class="label">{{label}}&nbsp;<a href="#" class="close">&times;</a></li>\n\
