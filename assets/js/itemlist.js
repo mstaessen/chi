@@ -45,27 +45,18 @@ function toggleListItems(name) {
 }
 
 function untoggleListItems(){
-    if(_filter!=false){
+    if(_filter){
      $('*> li[data-list="'+_filter+'"]').removeClass("active");
       _filter = false;
     }
-    if (_source_filter != flag){
+    if (_source_filter){
       $('*> li[data-list="source-'+_source_filter+'"]').removeClass("active");
       _source_filter = false;
     }
-    if (_label_filter != flag){
+    if (_label_filter){
       $('*> li[data-list="label-'+_label_filter+'"]').removeClass("active");
       _label_filter = false;
     }
-}
-
-
-
-function toggleLabel(label){
-    untoggleListItems();
-    _label_filter= label.replace(/^label-/,'');     
-    $('*> li[data-list="label-'+_label_filter+'"]').addClass("active");
-    updateListItems();
 }
 
 function addDraggable(){

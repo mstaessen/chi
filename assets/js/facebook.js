@@ -42,7 +42,7 @@ function requestFacebookMessages() {
 
 function loadFacebookMessages(data) {
 	var messages = data.data;
-	if (messages.length == 0) {
+	if (!messages || messages.length == 0) {
 		var d = new Date()
 		storage.setItem('facebookUpdateTime', d.getTime())
 		until = null;
