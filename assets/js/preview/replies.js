@@ -25,13 +25,13 @@ function getRepliesTemplate(source) {
 
 var twitterRepliesTemplate = Hogan.compile('{{{text}}}');
 var facebookRepliesTemplate = Hogan.compile(
-'{{#comments.data}}\n\
+'{{#replies.data}}\n\
 <div class="reply">\n\
     <h4>{{from.name}}</h4>\n\
     <p>{{{message}}}</p>\n\
 </div>\n\
-{{/comments.data}}\n\
-<div class="more">Read all comments on <a href="{{{link}}}" target="new">Facebook</a></div>'
+{{/replies.data}}\n\
+<div class="more">{{replies.count}} comments in total, read all comments on <a href="{{{link}}}" target="new">Facebook</a></div>'
 );
 var mailRepliesTemplate = Hogan.compile('{{{text}}}');
 var rssRepliesTemplate = Hogan.compile('{{{text}}}');
