@@ -87,7 +87,7 @@ function preview_read_later(message) {
 
 var t;
 var t2;
-var timeoutTime = 30000000;
+var timeoutTime = 3000;
 var date;
 
 function updateSlider(event, ui) {
