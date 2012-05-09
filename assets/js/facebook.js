@@ -62,24 +62,23 @@ function addFacebookMessage(msg) {
 		short_from : '',
 		short_content : '',
 		source : 'facebook',
-		from : '',
+		from : null,
 		content : '',
+		link : '',
 		location : 'inbox',
 		read_later : -1,
-		labels : [ {
-			label : 'facebook',
-			pretty : 'Facebook'
-		} ],
+		labels : [],
 		replies : ''
 	};
 	newMsg.date = msg.created_time;
 	newMsg.original = msg;
-	newMsg.from = msg.from.name;
+	newMsg.from = msg.from;
 	newMsg.short_from = msg.from.name;
 	if (msg.message != null) {
 		newMsg.content = msg.message;
 		newMsg.short_content = msg.message;
-		replies : msg.comments;
+		newMsg.link = "https://facebook.com/" + msg.from.id + "/posts/" + msg.id.split('_')[1];
+		newMsg.replies = msg.comments;
 		addMessage(newMsg);
 	}
 }

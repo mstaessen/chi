@@ -8,16 +8,7 @@ function preview_controls(message){
 		$('#preview-panel > #preview > header > #rcontrolsctn > .btn-toolbar > .btn-group > .btn[data-btn-id=trash]').click(function(event){
 			trash(_active_item);
 		});
-		$('#preview-panel > #preview > header > #rcontrolsctn > .btn-toolbar > .btn-group > .dropdown-menu > li').click(function(event){
-			label = this.getAttribute('data-list');
-			if(label.match("new-label")){
-			    $('#add_new_label').modal('show');
-				return;
-			}
-			console.log('add label '+ label +' to the message')
-			addLabelToMessage(_active_item,label.replace(/^label-/,''));
-			updateListItems();
-		});
+
 }
 
 // TODO just render labels and an add new label button.
