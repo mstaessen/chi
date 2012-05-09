@@ -17,11 +17,12 @@ function preview_labels(message){
 }
 
 // TODO just render labels and an add new label button.
-var labelsTemplate = Hogan.compile(
+var labelsTemplate = Hogan.compile(		
 '<ul>\n\
-	{{#labels}}\n\
-	<li data-label="label-{{label}}" class="label">{{label}}&nbsp;<a href="#" class="close">&times;</a></li>\n\
-	{{/labels}}\n\
-	<li><a class="btn btn-mini" href="#"><i class="icon-tag"></i> Add Label</a></li>\n\
+    <li class="label">{{location}}</li>\n<li class="label">{{source}}</li>\n\
+    {{#labels}}\n\
+    <li data-label="label-{{label}}" class="label">{{label}}&nbsp;<a href="#" class="close">&times;</a></li>\n\
+    {{/labels}}\n\
+    <li><a class="btn btn-mini" href="#"><i class="icon-tag"></i> Add Label</a></li>\n\
 </ul>'
 );

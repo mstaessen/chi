@@ -61,19 +61,27 @@ html, body, #labels-panel, #items-panel {
 	position: absolute;
 	top: 8px;
 	left: 80px;
+	width: 153px;
+	height: 14px;
 	font-size: 14px;
 	line-height: 14px;
-	max-width: 153px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #items-list > li > div.preview {
 	position: absolute;
 	top: 30px;
 	left: 80px;
+    width: 153px;
+    height: 24px;
     font-size: 10px;
     line-height: 12px;
-    max-width: 153px;
     margin: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-line;
 }
 
 #items-list > li > div.labels {
