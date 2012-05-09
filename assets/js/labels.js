@@ -54,7 +54,15 @@ function addNewLabel(mid,labelName){
 	$('#label-group')['append'](labelTemplate.render(label));
 	$(".toggle-group:not(.items-list) > li[data-list=label-"+labelName+"]").on('click.updatefilters', function() {
             toggleListItems(this.getAttribute('data-list'));
-    });
+  	  });
+	$('#label-group > li[data-list="label-'+labelName+'"]').droppable({
+			hoverClass: "ui-state-active",
+			drop:function(event, ui){
+				mid=ui.draggable.attr('data-item-id');
+				label=this.getAttribute('data-list');
+				addLabelToMessage(mid,label.replace(/^label-/,''));
+			}
+   	 });
 }
 
 function removeLabelFromMessage(mid, labelName){
