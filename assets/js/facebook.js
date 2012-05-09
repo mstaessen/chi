@@ -3,13 +3,14 @@ var until = null;
 
 function authenticate() {
 	var appID = 201654839955521;
-	var path = 'https://www.facebook.com/dialog/oauth?';
-	var queryParams = [ 'client_id=' + appID,
-			'redirect_uri=http://localhost/chi/login.html',
-			'scope=read_stream', 'response_type=token' ];
-	var query = queryParams.join('&');
-	var url = path + query;
-	newWindow = window.open(url, "_self");
+    var path = 'https://www.facebook.com/dialog/oauth?';
+    var queryParams = ['client_id=' + appID,
+     'redirect_uri=' + document.location.origin + document.location.pathname + '?',
+	 'scope=read_stream',
+     'response_type=token'];
+   var query = queryParams.join('&');
+   var url = path + query;
+   newWindow=window.open(url,"_self");
 }
 
 function checkLogin(home) {
@@ -41,7 +42,7 @@ function requestFacebookMessages() {
 
 function loadFacebookMessages(data) {
 	var messages = data.data;
-	if (messages.length == 0) {
+	if (!messages || messages.length == 0) {
 		var d = new Date()
 		storage.setItem('facebookUpdateTime', d.getTime())
 		until = null;
