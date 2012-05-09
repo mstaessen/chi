@@ -15,11 +15,11 @@ function preview_read_later(message) {
 	$('#rrlctn').html(readlaterTemplate.render({
 		delay: getDelay(message.read_later)
 	}));
-	renderSlider(message,true);
+	renderSlider(message);
 
 }
 
-function renderSlider(message,autohideOn){
+function renderSlider(message){
 	var mid=message.id;
 	$('#rrlslider').slider({
 		range : false,
@@ -31,26 +31,18 @@ function renderSlider(message,autohideOn){
 			updateSlider(event, ui,mid);
 		}
 	});
-	
-	if(autohideOn){
-		$('#rrlcontrols').attr('data-autohide',"on");
-		$('#rrlctn').hover(function() {
-			if($('#rrlcontrols').css("display")=="none"){
-			  $('#rrlcontrols').show({
-				effect: "blind"
-			  });
-			}
-			clearTimeout(t2);
-		}, function() {
-			clearTimeout(t2);
-			t2=setTimeout('hideRRLControls()',timeoutTime);
-		});
-	}
-	else{
-		$('#rrlcontrols').show({
-				effect: "blind"
-		});
-	}
+	$('#rrlcontrols').attr('data-autohide',"on");
+	$('#rrlctn').hover(function() {
+		if($('#rrlcontrols').css("display")=="none"){
+		  $('#rrlcontrols').show({
+			effect: "blind"
+		  });
+		}
+		clearTimeout(t2);
+	}, function() {
+		clearTimeout(t2);
+		t2=setTimeout('hideRRLControls()',timeoutTime);
+	});
 	
 	
 	$('#rrlslider > a').hover(
@@ -172,12 +164,9 @@ function hidePopover(){
 }
 
 function hideRRLControls(){
-	if($('#rrlcontrols').attr('data-autohide')=="on"){
-		$('#rrlcontrols').hide({
-			effect: "blind"
-		});
-	}
-	 
+	$('#rrlcontrols').hide({
+		effect: "blind"
+	}); 
 }
 
 function setReadLater(undo,mid) {
@@ -195,17 +184,9 @@ function setReadLater(undo,mid) {
 	}
 }
 
-function showReadLaterModal(mid){
-	$('#read_later').modal('show');
-	var message=storage.getMessage(mid);
-	$('#read_later > .modal-body')[0].innerHTML=readlaterTemplate.render({
-		delay: getDelay(message.read_later)});
-	renderSlider(message,false);
-}
-
 var readlaterTemplate = Hogan.compile(
 '<h6>&diams; Read Later &diams;</h6>\n\
-<div id="rrlcontrols" data-autohide="off">\n\
+<div id="rrlcontrols">\n\
 	<div class="rrllabelctn">\n\
 		<div id="rrllabel">{{delay}}</div>\n\
 	</div>\n\
