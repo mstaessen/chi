@@ -1,3 +1,16 @@
+var datepickerOptions={
+	altField: "#datefield",
+	altFormat: "DD, d MM, yy",
+	minDate: 1,
+	defaultDate: +1,
+	onSelect: function(dateText, inst) { 
+			console.log(dateText+" selected");
+			date=$('#datepicker').datepicker( "getDate");
+			setDelay();
+			setReadLater(false);
+	}
+};
+
 function preview_read_later(message) {
 	$('#rrlctn').html(readlaterTemplate.render({
 		delay: getDelay(message.read_later)
@@ -27,14 +40,41 @@ function preview_read_later(message) {
 	});
 	
 	$('#rrlctn').hover(function() {
-		$('#rrlcontrols').show({
+		if($('#rrlcontrols').css("display")=="none"){
+		  $('#rrlcontrols').show({
 			effect: "blind"
-		});
+		  });
+		}
+		clearTimeout(t2);
 	}, function() {
-		// TODO don't hide when the slider is still selected
-		$('#rrlcontrols').hide({
+		clearTimeout(t2);
+		t2=setTimeout(function(){
+		  $('#rrlcontrols').hide({
 			effect: "blind"
 		});
+		},timeoutTime);
+		
+		
+	});
+	
+	$('#rrlslider > a').hover(
+		function () {
+			clearTimeout(t);
+			showPopover();
+		}, 
+		function () {
+			clearTimeout(t);
+			t=setTimeout('hidePopover()',timeoutTime);
+		}
+	);
+	
+	 $('#rrlslider > a').popover({
+        placement: 'bottom',		
+        trigger: 'manual',
+        title: 'Pick a date',
+		content: function(){
+			return '<input id="datefield" class="input uneditable-input"></input><div id="datepicker"></div>'
+		}
 	});
 	
 	if (getMessage(_active_item).read_later !== -1) {
@@ -46,7 +86,8 @@ function preview_read_later(message) {
 }
 
 var t;
-var timeoutTime = 3000;
+var t2;
+var timeoutTime = 30000000;
 var date;
 
 function updateSlider(event, ui) {
@@ -58,8 +99,10 @@ function updateSlider(event, ui) {
 	$('#rrllabel').html(createLabel(getDelay(ui.value), date));
 	setReadLater(!ui.value);
 	clearTimeout(t);
-	showCalendar();
-	t = setTimeout('hideCalendar()', timeoutTime);
+	showPopover();
+	t=setTimeout('hidePopover()',timeoutTime);
+	//showCalendar();
+	//t = setTimeout('hideCalendar()', timeoutTime);
 }
 
 function createLabel(delay, date) {
@@ -123,6 +166,41 @@ function hideCalendar() {
 			effect: "blind"
 		});
 	}
+}
+
+function showPopover(){
+	 var value = $('#rrlslider').slider( "value" );
+	 if(value<23){
+		hidePopover();
+		return;
+	 }
+	 datepickerOptions.defaultDate=value;
+	 $('#rrlslider > a').popover('show');
+	 $('#datepicker').datepicker(datepickerOptions);
+	 $('#datepicker').datepicker( "setDate" , date )
+	 $('.popover').hover(
+		function () {
+			clearTimeout(t2);
+			clearTimeout(t);
+		}, 
+		function () {
+			clearTimeout(t);	
+			t=setTimeout('hidePopover()',timeoutTime);
+			clearTimeout(t2);
+			t2=setTimeout(function(){
+			    $('#rrlcontrols').hide({
+			    effect: "blind"
+			    });
+			 },timeoutTime);
+		}
+	);
+	if(parseInt($('.popover').css("left"))>=screen.width-300){
+	   $('.popover').css("left",screen.width-300);    
+	 }
+}
+
+function hidePopover(){
+	$('#rrlslider > a').popover('hide');
 }
 
 function setReadLater(undo) {
