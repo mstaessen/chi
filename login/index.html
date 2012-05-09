@@ -4,26 +4,26 @@
 	<title>Relabel</title>
 	
 	<!-- The less stylesheets -->
-	<link rel="stylesheet/less" type="text/css" href="assets/less/styles.less" />
+	<link rel="stylesheet/less" type="text/css" href="../assets/less/styles.less" />
 	
 	<!-- The less compiler: include all less files BEFORE the compiler -->
-	<script src="assets/js/less.min.js"></script>
+	<script src="../assets/js/less.min.js"></script>
 	
 	<!-- jQuery & jQuery UI -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery-ui.min.js"></script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery-ui.min.js"></script>
 	
 	<!-- bootstrap -->
-	<script src="vendor/bootstrap/js/bootstrap-modal.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap-tooltip.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap-popover.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap-dropdown.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap-modal.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap-tooltip.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap-popover.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap-dropdown.js"></script>
 
 	<!-- Hogan.js -->
-	<script src="assets/js/hogan.js"></script>
+	<script src="../assets/js/hogan.js"></script>
 	
-	<script src="assets/js/facebook.js"></script>
-	<script src="assets/js/storage.js"></script>
+	<script src="../assets/js/facebook.js"></script>
+	<script src="../assets/js/storage.js"></script>
 	<script type="text/javascript">
     $(document).ready(function() {
 		if(window.location.hash.length != 0){
@@ -46,7 +46,7 @@
 			}
 		});
 		$("#btn_relabel").click(function(event){
-			newWindow=window.open(".","_self");
+			newWindow=window.open("..","_self");
 		});
     });
 	</script>
