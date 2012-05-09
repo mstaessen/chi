@@ -6,7 +6,7 @@ function authenticate(){
 	var appID = 201654839955521;
     var path = 'https://www.facebook.com/dialog/oauth?';
     var queryParams = ['client_id=' + appID,
-     'redirect_uri=http://localhost/chi/login.html' ,
+     'redirect_uri=' + document.location.origin + document.location.pathname + '?',
 	 'scope=read_stream',
      'response_type=token'];
    var query = queryParams.join('&');

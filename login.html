@@ -35,9 +35,10 @@
 			var queryParams = [accessToken, 'callback=checkLogin'];
 			var query = queryParams.join('&');
 			var url = path + query;
-			var script = document.createElement('script');
-			script.src = url;
-			document.body.appendChild(script);
+//			var script = document.createElement('script');
+//			script.src = url;
+//			document.body.appendChild(script);
+			$('<script src=\"' + url + '\"></scr'+ 'ipt>').appendTo(document);
 		}
 		$("#btn_facebook").click(function(event){
 			if(!$("#btn_facebook").hasClass("disabled")){
@@ -45,7 +46,7 @@
 			}
 		});
 		$("#btn_relabel").click(function(event){
-			newWindow=window.open("http://localhost/chi","_self");
+			newWindow=window.open(".","_self");
 		});
     });
 	</script>
