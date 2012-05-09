@@ -45,12 +45,21 @@
 		requestFacebookMessages();
 		$('#label-group').append(renderLabels());
 		$('*> li[data-list="archive"]').droppable({
+			hoverClass: "ui-state-active",
 			drop:function( event, ui ){
 				label=ui.draggable.attr('data-item-id');
 				archive(label);
 			}
 		});
+		$('*> li[data-list="trash"]').droppable({
+			hoverClass: "ui-state-active",
+			drop:function( event, ui ){
+				label=ui.draggable.attr('data-item-id');
+				trash(label);
+			}
+		});
 		$('#label-group > li[data-list|="label"]').droppable({
+			hoverClass: "ui-state-active",
 			drop:function(event, ui){
 				mid=ui.draggable.attr('data-item-id');
 				label=this.getAttribute('data-list');
