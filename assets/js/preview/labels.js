@@ -16,6 +16,7 @@ function preview_labels(message) {
         event.stopPropagation();
         $('#add_new_label').modal('show');
     });
+	$('#rlabelsctn .dropdown-menu')['append'](renderLabels());
     $('#rlabelsctn .dropdown-menu > li').click(function(event) {
         label = this.getAttribute('data-list');
         if (label.match("new-label")) {
