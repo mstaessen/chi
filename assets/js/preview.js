@@ -13,12 +13,20 @@ function previewMessage(mid){
     preview_replies(message);
 }
 
-var previewTemplate = Hogan.compile('<div id="preview">\n\
-\t<header>\n\
-\t\t<div id="rrlctn"></div>\n\
-\t\t<div id="rlabelsctn"></div>\n\
-\t\t<div id="rcontrolsctn"></div>\n\
-\t</header>\n\
-\t<div id="text"></div>\n\
-\t<div id="replies"></div>\n\
+var previewTemplate = Hogan.compile('\
+<div id="preview">\n\
+    <header>\n\
+        <div id="rrlctn"></div>\n\
+        <div>\n\
+            <dl>\n\
+                <dt>Labels</dt>\n\
+                <dd id="rlabelsctn"></dd>\n\
+            </dl>\n\
+        </div>\n\
+        <div id="rcontrolsctn"></div>\n\
+    </header>\n\
+    <div id="body">\n\
+        <div id="text"></div>\n\
+        <div id="replies"></div>\n\
+    </div>\n\
 </div>');

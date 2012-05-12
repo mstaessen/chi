@@ -5,7 +5,9 @@
 function SortedList(sort_function, eq_function) {
     this.root = 0;
     this.sf = sort_function;
-    this.ef = eq_function || function(a,b) { return a == b; };
+    this.ef = eq_function || function(a, b) {
+        return a == b;
+    };
 }
 
 SortedList.Element = function(elem) {
@@ -13,55 +15,58 @@ SortedList.Element = function(elem) {
     this.n = 0;
 }
 
-SortedList.prototype.add = function (elem) {
+SortedList.prototype.add = function(elem) {
     var newElem = new SortedList.Element(elem);
     if (!this.root) {
         this.root = newElem;
         return;
     }
-    
+
     if (this.sf(this.root.e, elem) <= 0) {
         newElem.n = this.root;
-        
+
         this.root = newElem;
         return;
     }
-    
+
     var cur = this.root;
     var prev;
     while (cur && this.sf(cur.e, elem) > 0) {
         prev = cur;
         cur = cur.n;
     }
-    
+
     if (!cur) {
         prev.n = newElem;
         return;
     }
-    
+
     var tmp = cur.n;
-    
-    if (cur) cur.n = newElem;
+
+    if (cur)
+        cur.n = newElem;
     newElem.n = tmp;
 }
 
 SortedList.prototype.remove = function(elem) {
     var cur = this.root;
     var prev = false;
-    
+
     while (cur && !this.ef(cur.e, elem)) {
         prev = cur;
         cur = cur.n;
     }
-    
-    if (!cur) return false;
-    if (!this.ef(cur.e, elem)) return false;
-    
+
+    if (!cur)
+        return false;
+    if (!this.ef(cur.e, elem))
+        return false;
+
     if (prev)
         prev.n = cur.n;
     else
         this.root = cur.n;
-    
+
     return cur.e;
 }
 
@@ -71,13 +76,13 @@ SortedList.prototype.removeAll = function(fn_match) {
     var prev = false;
     while (cur) {
         if (fn_match(cur.e)) {
-            if(prev) {
+            if (prev) {
                 prev.n = cur.n;
             } else {
                 this.root = cur.n;
             }
         }
-        
+
         prev = cur;
         cur = cur.n;
     }
@@ -107,16 +112,16 @@ SortedList.prototype.clear = function() {
 
 var SortFunctions = {};
 
-SortFunctions.date = function(a,b) {
+SortFunctions.date = function(a, b) {
     return Date.parse(a.date) - Date.parse(b.date);
 }
 
-SortFunctions.readLater = function(a,b) {
+SortFunctions.readLater = function(a, b) {
     return Date.parse(b.read_later) - Date.parse(a.read_later);
 }
 
 var EqualFunctions = {};
 
-EqualFunctions.msg = function(a,b) {
+EqualFunctions.msg = function(a, b) {
     return a.id == b.id;
 }

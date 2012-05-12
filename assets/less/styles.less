@@ -27,7 +27,7 @@ html, body, #labels-panel, #items-panel {
 	float: left;
 	width: 266px;
 	border-right: 1px solid #f0f0f0;
-	overflow-y: auto;
+	overflow-y: scroll;
 }
 
 #items-list {
@@ -125,7 +125,6 @@ html, body, #labels-panel, #items-panel {
   background-color: @linkColor;
 }
 
-
 #items-list > li.active > div.preview > a {
     color: @white;
 }
@@ -133,6 +132,25 @@ html, body, #labels-panel, #items-panel {
 #items-list > li.active > div.labels > a.label {
     color: @white;
     background: none;
+}
+
+#items-list > li.ui-draggable-dragging {
+	width: 189px;
+	height: 24px;
+}
+
+#items-list > li.ui-draggable-dragging > h4 {
+	top: 3px;
+	left: 8px;
+	width: 73px;
+}
+
+#items-list > li.ui-draggable-dragging img.avatar,
+#items-list > li.ui-draggable-dragging div.preview,
+#items-list > li.ui-draggable-dragging div.labels, {
+	display: none;
+	width: 0px;
+	height: 0px;
 }
 
 /* PREVIEW */
@@ -150,6 +168,7 @@ html, body, #labels-panel, #items-panel {
 #preview > header {
     display: block;
     width: 100%;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 #preview > header h6 {
@@ -235,6 +254,10 @@ html, body, #labels-panel, #items-panel {
 }
 
 /* PREVIEW TEXT */
+
+#text {
+	margin: 8px 16px;
+}
 
 #preview-panel > div.twitter {
     display: block;
