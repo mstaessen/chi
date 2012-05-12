@@ -23,6 +23,7 @@ var previewTemplate = Hogan.compile('\
                 <dd id="rlabelsctn"></dd>\n\
             </dl>\n\
         </div>\n\
+        <div class="clr"></div>\n\
     </header>\n\
     <div id="rcontrolsctn"></div>\n\
     <div id="body">\n\
