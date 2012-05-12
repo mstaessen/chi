@@ -169,6 +169,7 @@ html, body, #labels-panel, #items-panel {
     display: block;
     width: 100%;
     border-bottom: 1px solid #f0f0f0;
+    overflow: hidden;
 }
 
 #preview > header h6 {
@@ -182,7 +183,8 @@ html, body, #labels-panel, #items-panel {
 
 #rrlcontrols {
 	display: none;
-	margin: 0px 8px;
+	margin: 8px 8px;
+	overflow: hidden;
 }
 
 #rrlcontrols .rrllabelctn,
@@ -220,14 +222,35 @@ html, body, #labels-panel, #items-panel {
 
 /* PREVIEW LABELS */
 
-#rlabelsctn {
+#rinfo {
 	clear: both;
-	margin-top: 4px;	
+	margin: 8px 16px;
+}
+
+#rinfo dt,
+#rinfo dd {
+	padding: 0px;
+	margin: 4px 0px;
+	
+}
+
+#rinfo dt {
+	clear: left;
+	float: left;
+	width: 60px;
+	line-height: 26px;
+}
+
+#rinfo dd {
+	float: left;
+}
+
+#rinfo dd > ul {
+	margin: -3px 0px 0px 0px;
 }
 
 #rlabelsctn > ul {
 	list-style: none;
-	margin: 8px 16px;
 	padding: 0px;
 }
 
@@ -250,7 +273,8 @@ html, body, #labels-panel, #items-panel {
 /* PREVIEW CONTROLS */
 
 #rcontrolsctn {
-	clear: both;
+	margin: 8px 16px;
+	text-align: right;
 }
 
 /* PREVIEW TEXT */
@@ -332,3 +356,8 @@ html, body, #labels-panel, #items-panel {
 
 
 /* PREVIEW REPLIES */
+
+#replies {
+	margin: 8px 16px;
+	margin-left: 32px;
+}

@@ -17,14 +17,14 @@ var previewTemplate = Hogan.compile('\
 <div id="preview">\n\
     <header>\n\
         <div id="rrlctn"></div>\n\
-        <div>\n\
+        <div id="rinfo">\n\
             <dl>\n\
                 <dt>Labels</dt>\n\
                 <dd id="rlabelsctn"></dd>\n\
             </dl>\n\
         </div>\n\
-        <div id="rcontrolsctn"></div>\n\
     </header>\n\
+    <div id="rcontrolsctn"></div>\n\
     <div id="body">\n\
         <div id="text"></div>\n\
         <div id="replies"></div>\n\
