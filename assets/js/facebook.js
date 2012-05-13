@@ -44,7 +44,7 @@ function loadFacebookMessages(data) {
 	var messages = data.data;
 	if (!messages || messages.length == 0) {
 		var d = new Date()
-		storage.setItem('facebookUpdateTime', d.getTime())
+		//storage.setItem('facebookUpdateTime', d.getTime())
 		until = null;
 		return;
 	}
@@ -70,6 +70,9 @@ function addFacebookMessage(msg) {
 		labels : [],
 		replies : ''
 	};
+	if((new Date(msg.created_time)).getTime()>storage.getItem("facebookUpdateTime")){
+		storage.setItem('facebookUpdateTime',new Date(msg.created_time)).getTime() )
+	}
 	newMsg.date = msg.created_time;
 	newMsg.original = msg;
 	newMsg.from = msg.from;
