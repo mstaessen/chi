@@ -52,7 +52,7 @@ function addNewLabel(mid,labelName){
 	updateListItems();
 	previewMessage(_active_item);
 	$('#label-group')['append'](labelTemplate.render(label));
-	$(".toggle-group:not(.items-list) > li[data-list=label-"+labelName+"]").on('click.updatefilters', function() {
+	$('.toggle-group:not(.items-list) > li[data-list="label-'+labelName+'"]').on('click.updatefilters', function() {
             toggleListItems(this.getAttribute('data-list'));
   	  });
 	$('#label-group > li[data-list="label-'+labelName+'"]').droppable({

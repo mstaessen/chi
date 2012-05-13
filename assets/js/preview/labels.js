@@ -4,7 +4,7 @@ function preview_labels(message) {
         event.stopPropagation();
         var label = this.getAttribute('data-label');
         untoggleListItems();
-        $('* > li[data-list=' + label + ']').addClass('active');
+        $('* > li[data-list="' + label + '"]').addClass('active');
         toggleListItems(label);
     });
     $('#rlabelsctn > ul > li > .close').click(function(event) {
