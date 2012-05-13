@@ -3,9 +3,11 @@ function preview_controls(message){
 		
 		$('#preview .btn[data-btn-id=archive]').click(function(event){
 			archive(_active_item);
+			previewMessage(_active_item);
 		});
 		$('#preview .btn[data-btn-id=trash]').click(function(event){
 			trash(_active_item);
+			previewMessage(_active_item);
 		});
 
 }
