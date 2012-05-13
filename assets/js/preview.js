@@ -5,7 +5,7 @@ function previewMessage(mid){
     
     // create the preview
     // append readlater
-    $('#preview-panel').append(previewTemplate.render());
+    $('#preview-panel').html(previewTemplate.render());
     preview_read_later(message);
     preview_labels(message);
     preview_controls(message);
