@@ -135,12 +135,12 @@ function setReadLater(undo) {
 		msg.read_later = dateModal;
 		storage.saveMessage(msg);
 		if (msg.location != 'readlater') {
-			setLocation(mid, 'readlater');
+			setLocation(midDatepickerModal, 'readlater');
 		}
 	} else {
 		msg.read_later = -1;
 		storage.saveMessage(msg);
-		setLocation(mid, 'inbox');
+		setLocation(midDatepickerModal, 'inbox');
 	}
 }
 
