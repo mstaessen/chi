@@ -51,6 +51,13 @@
 				archive(label);
 			}
 		});
+		$('*> li[data-list="inbox"]').droppable({
+			hoverClass: "ui-state-active",
+			drop:function( event, ui ){
+				label=ui.draggable.attr('data-item-id');
+				setLocation(label,"inbox");
+			}
+		});
 		$('*> li[data-list="trash"]').droppable({
 			hoverClass: "ui-state-active",
 			drop:function( event, ui ){
