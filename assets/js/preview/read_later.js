@@ -164,7 +164,7 @@ function hideRRLControls() {
 }
 
 function setReadLater(undo) {
-    msg = getMessage(_active_message);
+    msg = getMessage(_active_item);
     if (!undo) {
         msg.read_later = date;
         storage.saveMessage(msg);
