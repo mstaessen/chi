@@ -71,7 +71,7 @@ function addFacebookMessage(msg) {
 		replies : ''
 	};
 	if((new Date(msg.created_time)).getTime()>storage.getItem("facebookUpdateTime")){
-		storage.setItem('facebookUpdateTime',new Date(msg.created_time)).getTime() )
+		storage.setItem('facebookUpdateTime',(new Date(msg.created_time)).getTime() );
 	}
 	newMsg.date = msg.created_time;
 	newMsg.original = msg;
