@@ -1,5 +1,6 @@
 var newWindow;
 var until = null;
+var lastMessageTime;
 
 function authenticate() {
 	var appID = 201654839955521;
@@ -24,6 +25,7 @@ function requestFacebookMessages() {
 		if (until === null) {
 			var d = new Date()
 			until = "until=" + d.getTime();
+			lastMessageTime=storage.getItem("facebookUpdateTime");
 		}
 		var accessToken = storage.getItem("facebookToken");
 		var path = "https://graph.facebook.com/me/home?";
@@ -56,6 +58,7 @@ function loadFacebookMessages(data) {
 	requestFacebookMessages();
 }
 
+
 function addFacebookMessage(msg) {
 	var newMsg = {
 		date : '', 
@@ -70,8 +73,8 @@ function addFacebookMessage(msg) {
 		labels : [],
 		replies : ''
 	};
-	if((new Date(msg.created_time)).getTime()>storage.getItem("facebookUpdateTime")){
-		storage.setItem('facebookUpdateTime',(new Date(msg.created_time)).getTime() );
+	if((new Date(msg.created_time)).getTime()/1000>lastMessageTime){
+		lastMessageTime=(new Date(msg.created_time)).getTime()/1000 ;
 	}
 	newMsg.date = msg.created_time;
 	newMsg.original = msg;
