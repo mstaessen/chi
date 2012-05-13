@@ -45,8 +45,7 @@ function requestFacebookMessages() {
 function loadFacebookMessages(data) {
 	var messages = data.data;
 	if (!messages || messages.length == 0) {
-		var d = new Date()
-		//storage.setItem('facebookUpdateTime', d.getTime())
+		storage.setItem('facebookUpdateTime', lastMessageTime)
 		until = null;
 		return;
 	}
