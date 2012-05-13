@@ -163,8 +163,8 @@ function hideRRLControls() {
     });
 }
 
-function setReadLater(undo, mid) {
-    msg = getMessage(mid);
+function setReadLater(undo) {
+    msg = getMessage(_active_message);
     if (!undo) {
         msg.read_later = date;
         storage.saveMessage(msg);

@@ -1,10 +1,10 @@
 function preview_controls(message){
 		$('#rcontrolsctn').html(controlsTemplate.render());
 		
-		$('#preview-panel > #preview > header > #rcontrolsctn > .btn-toolbar > .btn-group > .btn[data-btn-id=archive]').click(function(event){
+		$('#preview .btn[data-btn-id=archive]').click(function(event){
 			archive(_active_item);
 		});
-		$('#preview-panel > #preview > header > #rcontrolsctn > .btn-toolbar > .btn-group > .btn[data-btn-id=trash]').click(function(event){
+		$('#preview .btn[data-btn-id=trash]').click(function(event){
 			trash(_active_item);
 		});
 

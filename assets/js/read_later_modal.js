@@ -10,10 +10,11 @@ var datepickerOptionsModal={
 			setReadLater(false);
 	}
 };
-
+var midDatepickerModal;
 
 function renderSliderModal(message){
 	var mid=message.id;
+	midDatepickerModal=mid;
 	$('#rrlslidermodal').slider({
 		range : false,
 		min : 0,
@@ -128,8 +129,8 @@ function hidePopoverModal(){
 	$('#rrlslidermodal > a').popover('hide');
 }
 
-function setReadLater(undo,mid) {
-	msg = getMessage(mid);
+function setReadLater(undo) {
+	msg = getMessage(midDatepickerModal);
 	if (!undo) {
 		msg.read_later = dateModal;
 		storage.saveMessage(msg);
