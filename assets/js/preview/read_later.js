@@ -170,11 +170,13 @@ function setReadLater(undo) {
         storage.saveMessage(msg);
         if (msg.location != 'readlater') {
             setLocation(_active_item, 'readlater');
+	    previewMessage(_active_item);
         }
     } else {
         msg.read_later = -1;
         storage.saveMessage(msg);
         setLocation(_active_item, 'inbox'); // check dit
+	previewMessage(_active_item);
     }
 }
 
