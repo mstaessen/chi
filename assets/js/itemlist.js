@@ -1,6 +1,6 @@
 var listItemTemplate = Hogan.compile('\
 <li {{^read}}class="unread"{{/read}} data-item-id="{{id}}">\n\
-    <img class="avatar" src="http://www.gravatar.com/avatar/?d=mm&s=48" alt="profile picture" />\n\
+    <img class="avatar" src="https://graph.facebook.com/{{from.id}}/picture?type=square" alt="profile picture" />\n\
 	<h4>{{short_from}}</h4>\n\
 	<div class="preview">{{{short_content}}}</div>\n\
 	<div class="labels">{{#labels}}<a data-label="label-{{label}}" class="label" href="#">{{label}}</a>{{/labels}}</div>\n\
