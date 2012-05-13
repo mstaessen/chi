@@ -114,7 +114,7 @@ function updateListItems() {
         event.stopPropagation();
         var label = this.getAttribute('data-label');
         untoggleListItems();
-        $('* > li[data-list=' + label + ']').addClass('active');
+        $('* > li[data-list="' + label + '"]').addClass('active');
         toggleListItems(label);
     });
     $('#items-list > li > a.archive').click(function(event) {
