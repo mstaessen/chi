@@ -62,12 +62,13 @@ function untoggleListItems() {
 
 function addDraggable() {
     $('#items-list > li').draggable({
+        distance : 20,
         revert : true,
         opacity : 0.7,
         helper : 'clone',
         cursorAt : {
-            top : 12,
-            left : 25
+            top : 32,
+            left : 0
         }
     });
 }
