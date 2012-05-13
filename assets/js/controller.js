@@ -48,6 +48,7 @@ function markUnread(mid) {
 }
 
 function hideMessage() {
+    hidePopover();
     $('#preview-panel').html('');
 }
 
