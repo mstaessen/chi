@@ -36,7 +36,30 @@ $(document).ready(function() {
         return false;
     });
 
-    // TODO functions for the preview context menu...
+    $('#preview_rightclick > div.submenu > a.menuitem.archive').on('click', function() {
+        $('#preview_rightclick').hide();
+        $('#overlay').hide();
+    
+        if(!_active_item) return;
+        archive(_active_item);
+        previewMessage(_active_item);
+    });
+    $('#preview_rightclick > div.submenu > a.menuitem.trash').on('click', function() {
+        $('#preview_rightclick').hide();
+        $('#overlay').hide();
+    
+        if(!_active_item) return;
+        trash(_active_item);
+        previewMessage(_active_item);
+    });
+    $('#preview_rightclick > div.submenu > a.menuitem.readlater').on('click', function() {
+        $('#preview_rightclick').hide();
+        $('#overlay').hide();
+    
+        if(!_active_item) return;
+        showReadLaterModal(_active_item);
+        previewMessage(_active_item);
+    });
 });
 
 var previewTemplate = Hogan.compile('\
