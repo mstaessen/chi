@@ -50,7 +50,6 @@ function renderSlider(message) {
         clearTimeout(t);
         t = setTimeout('hidePopover()', timeoutTime);
     });
-
     $('#rrlslider > a')
             .popover(
                     {
@@ -75,6 +74,7 @@ var t;
 var t2;
 var timeoutTime = 500;
 var date;
+
 
 function updateSlider(event, ui, mid) {
     if (ui.value > 24) {
