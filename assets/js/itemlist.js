@@ -159,5 +159,25 @@ function updateListItems() {
 $(document).ready(function() {
     $('#items-panel').on('contextmenu', function() { return false; });
 
-    // TODO onClicks for the context menu
+    $('#item_rightclick > div.submenu > a.menuitem.archive').on('click', function() {
+        $('#item_rightclick').hide();
+        $('#overlay').hide();
+    
+        if(!_context_msg) return;
+        archive(_context_msg);
+    });
+    $('#item_rightclick > div.submenu > a.menuitem.trash').on('click', function() {
+        $('#item_rightclick').hide();
+        $('#overlay').hide();
+    
+        if(!_context_msg) return;
+        trash(_context_msg);
+    });
+    $('#item_rightclick > div.submenu > a.menuitem.readlater').on('click', function() {
+        $('#item_rightclick').hide();
+        $('#overlay').hide();
+    
+        if(!_context_msg) return;
+        showReadLaterModal(_context_msg);
+    });
 });
