@@ -357,10 +357,30 @@ div.clr {
     color: @black;
 }
 
-
 /* PREVIEW REPLIES */
 
 #replies {
 	margin: 8px 16px;
 	margin-left: 32px;
+}
+
+/* rightclick */
+
+div.rightclick {
+    background-color: #fff;
+    font-size: 12px;
+    line-height: 12px;
+    padding: 2px;
+    color: @black;
+    border: 1px solid #f0f0f0;
+    display: none;
+    position: absolute;
+}
+
+div.rightclick > div.submenu {
+    border: 1px solid #f0f0f0;
+}
+
+div.rightclick > div.submenu > a.menuitem:hover {
+    background-color: #fafafa;
 }
