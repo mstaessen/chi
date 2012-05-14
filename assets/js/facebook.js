@@ -45,6 +45,8 @@ function requestFacebookMessages() {
 function loadFacebookMessages(data) {
 	if(data.error!=null){
 		authenticate();
+		console.log("authenticating");
+		return;
 	}
 	var messages = data.data;
 	if (!messages || messages.length == 0) {
