@@ -63,6 +63,12 @@ function addNewLabel(mid,labelName){
 				addLabelToMessage(mid,label.replace(/^label-/,''));
 			}
    	 });
+   	 
+	 $('#label-group > li[data-list="label-' + labelName + '"]').on('contextmenu', function() {
+   	    untoggleListItems();
+   	    $('* > li[data-list="' + this.getAttribute('data-list') + '"]').addClass('active');
+   	    toggleListItems(this.getAttribute('data-list'));
+   	 });
 }
 
 function removeLabelFromMessage(mid, labelName){
@@ -79,4 +85,13 @@ function removeLabelFromMessage(mid, labelName){
 		previewMessage(_active_item);
 	}
 }
+
+$(document).ready(function() {
+    $('#labels-panel').on('contextmenu', function() { return false; });
+    $('#labels-panel > ul > li').on('contextmenu', function() {
+   	    untoggleListItems();
+   	    $('* > li[data-list="' + this.getAttribute('data-list') + '"]').addClass('active');
+   	    toggleListItems(this.getAttribute('data-list'));
+   	 });
+});
 

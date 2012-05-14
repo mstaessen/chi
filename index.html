@@ -48,6 +48,13 @@
 		}
 		requestFacebookMessages();
 		$('#label-group').append(renderLabels());
+		
+        $('#label-group > li').on('contextmenu', function() {
+     	    untoggleListItems();
+     	    $('* > li[data-list="' + this.getAttribute('data-list') + '"]').addClass('active');
+     	    toggleListItems(this.getAttribute('data-list'));
+        });
+		
 		$('*> li[data-list="archive"]').droppable({
 			hoverClass: "ui-state-active",
 			drop:function( event, ui ){
@@ -196,6 +203,14 @@
     </div>
     
     <div class="rightclick" id="item_rightclick">
+        <div class="submenu">
+            <a href="#" class="menuitem">Archive</a>
+            <a href="#" class="menuitem">Trash</a>
+            <a href="#" class="menuitem">Read Later</a>
+        </div>
+    </div>
+    
+    <div class="rightclick" id="preview_rightclick">
         <div class="submenu">
             <a href="#" class="menuitem">Archive</a>
             <a href="#" class="menuitem">Trash</a>

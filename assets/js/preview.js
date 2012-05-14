@@ -13,6 +13,32 @@ function previewMessage(mid){
     preview_replies(message);
 }
 
+$(document).ready(function() {
+    $('#preview-panel').on('contextmenu', function(event) {
+        event.stopPropagation();
+        
+        if(!_active_item) return false;
+        
+        $('#preview_rightclick').css({left: event.pageX, top: event.pageY, zIndex: 101}).show();
+        
+        $('<div id="overlay"></div>')
+            .css({left : '0px', top : '0px',position: 'absolute', width: '100%', height: '100%', zIndex: '100' })
+            .click(function() {
+                $(this).remove();
+                $('#preview_rightclick').hide();
+            })
+            .on('contextmenu', function() { 
+                $(this).remove();
+                $('#preview_rightclick').hide();
+                return false;
+            })
+            .appendTo(document.body);
+        return false;
+    });
+
+    // TODO functions for the preview context menu...
+});
+
 var previewTemplate = Hogan.compile('\
 <div id="preview">\n\
     <header>\n\
