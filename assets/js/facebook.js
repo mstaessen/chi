@@ -43,7 +43,7 @@ function requestFacebookMessages() {
 }
 
 function loadFacebookMessages(data) {
-	if(data.error){
+	if(data.error!=null){
 		authenticate();
 	}
 	var messages = data.data;
