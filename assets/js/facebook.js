@@ -1,11 +1,9 @@
 var newWindow;
 var until = null;
 var lastMessageTime;
-var appID = 201654839955521;
+var appID = (document.location.host == 'localhost.vtk.be') ? 101431099995322 : 201654839955521;
 
 function authenticate() {
-//	var appID = 201654839955521;
-    var appID = 101431099995322;
     var path = 'https://www.facebook.com/dialog/oauth?';
     var queryParams = ['client_id=' + appID,
      'redirect_uri=' + document.location.origin + document.location.pathname,
