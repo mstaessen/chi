@@ -63,6 +63,7 @@ function addNewLabel(mid,labelName){
 				addLabelToMessage(mid,label.replace(/^label-/,''));
 			}
    	 });
+	updateToggleGroups();
 }
 
 function removeLabelFromMessage(mid, labelName){
