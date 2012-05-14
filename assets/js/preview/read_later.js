@@ -50,7 +50,6 @@ function renderSlider(message) {
         clearTimeout(t);
         t = setTimeout('hidePopover()', timeoutTime);
     });
-
     $('#rrlslider > a')
             .popover(
                     {
@@ -76,6 +75,7 @@ var t2;
 var timeoutTime = 500;
 var date;
 
+
 function updateSlider(event, ui, mid) {
     if (ui.value > 24) {
         date = new Date((ui.value - 23) * 86400000 + new Date().getTime());
@@ -86,7 +86,10 @@ function updateSlider(event, ui, mid) {
     setReadLater(!ui.value, mid);
     clearTimeout(t);
     showPopover();
-    t = setTimeout('hidePopover()', timeoutTime);
+    if(!$("#rrlcontrols").hasClass("ui-state-hover")){
+   	t = setTimeout('hidePopover()', timeoutTime);
+    }
+    
 }
 
 function createLabel(delay, date) {
