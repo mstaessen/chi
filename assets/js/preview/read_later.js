@@ -44,9 +44,11 @@ function renderSlider(message) {
     });
 
     $('#rrlcontrols').hover(function() {
+		$('#rrlcontrols').addClass("hovering");
         clearTimeout(t);
         showPopover();
     }, function() {
+		$('#rrlcontrols').removeClass("hovering");
         clearTimeout(t);
         t = setTimeout('hidePopover()', timeoutTime);
     });
@@ -77,6 +79,9 @@ var date;
 
 
 function updateSlider(event, ui, mid) {
+	if ($('#rrlcontrols').css("display") == "none"){
+		return;
+	}
     if (ui.value > 24) {
         date = new Date((ui.value - 23) * 86400000 + new Date().getTime());
     } else {
@@ -86,8 +91,7 @@ function updateSlider(event, ui, mid) {
     setReadLater(!ui.value, mid);
     clearTimeout(t);
     showPopover();
-	console.log($("#rrlcontrols").hasClass("ui-state-hover"));
-    if(!$("#rrlcontrols").hasClass("ui-state-hover")){
+    if(!$("#rrlcontrols").hasClass("hovering")){
    		t = setTimeout('hidePopover()', timeoutTime);
     }
     
