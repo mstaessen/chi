@@ -17,6 +17,15 @@ function preview_labels(message) {
         label = this.getAttribute('data-list');
         if (label.match("new-label")) {
             $('#add_new_label').modal('show');
+            $('#add_new_label > .modal-body > input')
+                .focus()
+                .keypress(function(e) {
+                    if(((typeof(e.which) == 'undefined') ? e.keyCode : e.which) != 13)
+                        return true;
+                    $('#add_new_label > .modal-footer > .btn-save').click();
+                    return false;
+                });
+            $('.modal-backdrop').on('contextmenu', function() { return false; });
             return;
         }
         console.log('add label ' + label + ' to the message')

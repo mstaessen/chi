@@ -151,6 +151,8 @@ function showPopover() {
     if (parseInt($('.popover').css("left")) >= screen.width - 300) {
         $('.popover').css("left", screen.width - 300);
     }
+    
+    $('.popover').on('contextmenu', function() { return false; });
 }
 
 function hidePopover() {

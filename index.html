@@ -98,7 +98,7 @@
 		$('#read_later').on('hide', function() {
 			hidePopoverModal();
 		});
-		$('.modal > .modal-footer > .btn-save').on('click.save', function() {
+		$('#add_new_label > .modal-footer > .btn-save').on('click.save', function() {
             $('#' + this.getAttribute('data-id')).modal('hide');
 			var newLabel=$('.modal > .modal-body > input').val();
 			addNewLabel(_active_item,newLabel);
@@ -115,6 +115,8 @@
         });
         toggleListItems('inbox');
 	    updateToggleGroups();
+	    
+	    $('.modal').on('contextmenu', function() { return false; });
     });
 	</script>
 	

@@ -120,9 +120,9 @@ function showPopoverModal(){
 			tModal=setTimeout('hidePopoverModal()',timeoutTime);
 		}
 	);
-	if(parseInt($('.popover').css("left"))>=screen.width-300){
-	   $('.popover').css("left",screen.width-300);    
-	 }
+    if(parseInt($('.popover').css("left"))>=screen.width-300){
+        $('.popover').css("left",screen.width-300);    
+	}
 }
 
 function hidePopoverModal(){
@@ -151,6 +151,8 @@ function showReadLaterModal(mid){
 	$('#read_later > .modal-body')[0].innerHTML=readlaterModalTemplate.render({
 		delay: getDelay(message.read_later)});
 	renderSliderModal(message);
+	
+	$('.modal-backdrop').on('contextmenu', function() { return false; });
 }
 
 var readlaterModalTemplate = Hogan.compile(

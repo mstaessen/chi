@@ -2,6 +2,7 @@
 
 function contentNotAvailable() {
     $('#content_not_available').modal('show');
+    $('.modal-backdrop').on('contextmenu', function() { return false; });
 }
 
 
