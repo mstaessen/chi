@@ -4,7 +4,8 @@ var listItemTemplate = Hogan.compile('\
 	<h4>{{short_from}}</h4>\n\
 	<div class="preview">{{{short_content}}}</div>\n\
 	<div class="labels">{{#labels}}<a data-label="label-{{label}}" class="label" href="#">{{label}}</a>{{/labels}}</div>\n\
-	<a href="#" class="archive"><i class="icon-ok"></i></a>\n\
+	<a href="#" class="archive"><i class="icon-folder-open"></i></a>\n\
+	<a href="#" class="trash"><i class="icon-trash"></i></a>\n\
 </li>');
 
 var _filter = false;
@@ -124,7 +125,11 @@ function updateListItems() {
         var id = this.parentNode.getAttribute('data-item-id');
         archive(id);
     });
-    
+    $('#items-list > li > a.trash').click(function(event) {
+        event.stopPropagation();
+        var id = this.parentNode.getAttribute('data-item-id');
+        trash(id);
+    }); 
     $('#items-list > li').on('contextmenu', function(event) {
         _context_msg = this.getAttribute('data-item-id');
         
