@@ -63,7 +63,7 @@ function addNewLabel(mid,labelName){
 				addLabelToMessage(mid,label.replace(/^label-/,''));
 			}
    	 });
-   	 
+	updateToggleGroups();
 	 $('#label-group > li[data-list="label-' + labelName + '"]').on('contextmenu', function() {
    	    untoggleListItems();
    	    $('* > li[data-list="' + this.getAttribute('data-list') + '"]').addClass('active');
