@@ -1,9 +1,9 @@
 var newWindow;
 var until = null;
 var lastMessageTime;
+var appID = 201654839955521;
 
 function authenticate() {
-	var appID = 201654839955521;
     var path = 'https://www.facebook.com/dialog/oauth?';
     var queryParams = ['client_id=' + appID,
      'redirect_uri=' + document.location.origin + document.location.pathname + '?',
@@ -43,6 +43,9 @@ function requestFacebookMessages() {
 }
 
 function loadFacebookMessages(data) {
+	if(data.error){
+		authenticate();
+	}
 	var messages = data.data;
 	if (!messages || messages.length == 0) {
 		storage.setItem('facebookUpdateTime', lastMessageTime)
