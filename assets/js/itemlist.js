@@ -127,6 +127,25 @@ function updateListItems() {
         event.stopPropagation();
         var id = this.parentNode.getAttribute('data-item-id');
         trash(id);
+    }); 
+    $('#items-list > li').on('contextmenu', function(event) {
+        event.stopPropagation();
+        
+        $('#item_rightclick').css({left: event.pageX, top: event.pageY, zIndex: 101}).show();
+        
+        $('<div id="overlay"></div>')
+            .css({left : '0px', top : '0px',position: 'absolute', width: '100%', height: '100%', zIndex: '100' })
+            .click(function() {
+                $(this).remove();
+                $('#item_rightclick').hide();
+            })
+            .on('contextmenu', function() { 
+                $(this).remove();
+                $('#item_rightclick').hide();
+                return false;
+            })
+            .appendTo(document.body);
+        return false;
     });
 
     if (updateToggleGroups)
