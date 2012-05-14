@@ -43,7 +43,7 @@ function renderSlider(message) {
         t2 = setTimeout('hideRRLControls()', timeoutTime);
     });
 
-    $('#rrlslider > a').hover(function() {
+    $('#rrlcontrols').hover(function() {
         clearTimeout(t);
         showPopover();
     }, function() {
@@ -73,7 +73,7 @@ function renderSlider(message) {
 
 var t;
 var t2;
-var timeoutTime = 3000;
+var timeoutTime = 500;
 var date;
 
 function updateSlider(event, ui, mid) {
@@ -181,7 +181,7 @@ function setReadLater(undo) {
 }
 
 var readlaterTemplate = Hogan.compile('\
-<h6>&diams; Read Later &diams;</h6>\n\
+<h5>&diams; Read Later &diams;</h5>\n\
 <div id="rrlcontrols">\n\
 	<div class="rrllabelctn">\n\
 		<div id="rrllabel">{{delay}}</div>\n\
