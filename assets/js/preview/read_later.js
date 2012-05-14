@@ -86,7 +86,11 @@ function updateSlider(event, ui, mid) {
     setReadLater(!ui.value, mid);
     clearTimeout(t);
     showPopover();
-    t = setTimeout('hidePopover()', timeoutTime);
+	console.log($("#rrlcontrols").hasClass("ui-state-hover"));
+    if(!$("#rrlcontrols").hasClass("ui-state-hover")){
+   		t = setTimeout('hidePopover()', timeoutTime);
+    }
+    
 }
 
 function createLabel(delay, date) {

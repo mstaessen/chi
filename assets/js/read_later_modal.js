@@ -7,7 +7,7 @@ var datepickerOptionsModal={
 			console.log(dateText+" selected");
 			dateModal=$('#datepicker').datepicker( "getDate");
 			setDelayModalModal();
-			setReadLater(false);
+			setReadLaterModal(false);
 	}
 };
 var midDatepickerModal;
@@ -44,7 +44,7 @@ function renderSliderModal(message){
 	 $('#rrlslidermodal > a').popover({
         placement: 'bottom',		
         trigger: 'manual',
-        title: 'Pick a dateModal',
+        title: 'Pick a date',
 		content: function(){
 			return '<input id="datefieldmodal" class="input uneditable-input"></input><div id="datepicker"></div>'
 		}
@@ -68,7 +68,7 @@ function updateSliderModal(event, ui,mid) {
 		dateModal = new Date((ui.value) * 3600000 + new Date().getTime())
 	}
 	$('#rrllabelmodal').html(createLabel(getDelay(ui.value), dateModal));
-	setReadLater(!ui.value,mid);
+	setReadLaterModal(!ui.value,mid);
 	clearTimeout(tModal);
 	showPopoverModal();
 	tModal=setTimeout('hidePopoverModal()',timeoutTime);
@@ -129,7 +129,7 @@ function hidePopoverModal(){
 	$('#rrlslidermodal > a').popover('hide');
 }
 
-function setReadLater(undo) {
+function setReadLaterModal(undo) {
 	msg = getMessage(midDatepickerModal);
 	if (!undo) {
 		msg.read_later = dateModal;
