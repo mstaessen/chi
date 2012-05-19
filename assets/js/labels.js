@@ -50,8 +50,11 @@ function addNewLabel(mid,labelName){
 	addLabel(label);
 	addLabelToMessage(mid,labelName);
 	updateListItems();
-	previewMessage(_active_item);
+	if(mid===_active_item){
+		previewMessage(_active_item);
+	}
 	$('#label-group')['append'](labelTemplate.render(label));
+	$('#item_labelmenu')['append'](labelTemplate.render(label));
 	$('.toggle-group:not(.items-list) > li[data-list="label-'+labelName+'"]').on('click.updatefilters', function() {
             toggleListItems(this.getAttribute('data-list'));
   	  });
@@ -63,6 +66,29 @@ function addNewLabel(mid,labelName){
 				addLabelToMessage(mid,label.replace(/^label-/,''));
 			}
    	 });
+	 $('#item_labelmenu > li[data-list="label-'+labelName+'"]').on('click',function(event) {
+		$('#item_rightclick').hide();
+        $('#overlay').hide();
+		if(!_context_msg) return;
+        if ($(this).hasClass("newlabel")) {
+            $('#add_new_label').modal('show');
+			$('#add_new_label').attr('data-mid',_context_msg);
+            $('#add_new_label > .modal-body > input')
+                .focus()
+                .keypress(function(e) {
+                    if(((typeof(e.which) == 'undefined') ? e.keyCode : e.which) != 13)
+                        return true;
+                    $('#add_new_label > .modal-footer > .btn-save').click();
+                    return false;
+                });
+            $('.modal-backdrop').on('contextmenu', function() { return false; });
+            return;
+		}
+		label = this.getAttribute('data-list');
+		console.log('add label ' + label + ' to the message')
+        addLabelToMessage(_context_msg, label.replace(/^label-/, ''));
+        updateListItems();
+	});
 	updateToggleGroups();
 	 $('#label-group > li[data-list="label-' + labelName + '"]').on('contextmenu', function() {
    	    untoggleListItems();

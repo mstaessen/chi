@@ -20,7 +20,7 @@ $(document).ready(function() {
         if(!_active_item) return false;
         
         $('#preview_rightclick').css({left: event.pageX, top: event.pageY, zIndex: 101}).show();
-        
+		
         $('<div id="overlay"></div>')
             .css({left : '0px', top : '0px',position: 'absolute', width: '100%', height: '100%', zIndex: '100' })
             .click(function() {

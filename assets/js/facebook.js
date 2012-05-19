@@ -52,6 +52,7 @@ function loadFacebookMessages(data) {
 	if (!messages || messages.length == 0) {
 		storage.setItem('facebookUpdateTime', lastMessageTime)
 		until = null;
+		updateListItems();
 		return;
 	}
 	for ( var i = 0; i < messages.length; i++) {

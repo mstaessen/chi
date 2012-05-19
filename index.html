@@ -48,7 +48,6 @@
 		}
 		requestFacebookMessages();
 		$('#label-group').append(renderLabels());
-		
         $('#label-group > li').on('contextmenu', function() {
      	    untoggleListItems();
      	    $('* > li[data-list="' + this.getAttribute('data-list') + '"]').addClass('active');
@@ -100,9 +99,10 @@
 		});
 		$('#add_new_label > .modal-footer > .btn-save').on('click.save', function() {
             $('#' + this.getAttribute('data-id')).modal('hide');
-			var newLabel=$('.modal > .modal-body > input').val();
-			addNewLabel(_active_item,newLabel);
-			$('.modal > .modal-body > input').val("");
+			var newLabel=$('#add_new_label > .modal-body > input').val();
+			var mid=$('#add_new_label').attr('data-mid');
+			addNewLabel(mid,newLabel);
+			$('#add_new_label > .modal-body > input').val("");
         });
     
         $(".toggle-group:not(.items-list) > li").on('click.updatefilters', function() {
@@ -185,7 +185,7 @@
             
         </div>
         <div class="modal-footer">
-            <a href="#" data-id="read_later" class="btn btn-primary btn-close">Close</a>
+            <a href="#" data-id="read_later" class="btn btn-primary btn-close">Ok</a>
         </div>
     	</div>
 	
@@ -208,12 +208,20 @@
         <li class="menuitem archive"><a href="#">Archive</a></li>
         <li class="menuitem trash"><a href="#">Trash</a></li>
         <li class="menuitem readlater"><a href="#">Read Later</a></li>
+		<li class="menuitem addlabel"><a href="#">Add label</a></li>
     </ul>
     
     <ul class="rightclick dropdown-menu" id="preview_rightclick">
         <li class="menuitem archive"><a href="#">Archive</a></li>
         <li class="menuitem trash"><a href="#">Trash</a></li>
-        <li class="menuitem readlater"><a href="#">Read Later</a></li>
     </ul>
+	
+	<ul class="rightclick dropdown-menu" id="item_labelmenu">
+        <li class="menuitem newlabel"><a href="#">Add new label</a></li>
+        <li class="divider"></li>
+		
+    </ul>
+	
+	
 </body>
 </html>

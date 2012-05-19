@@ -134,7 +134,15 @@ function updateListItems() {
         _context_msg = this.getAttribute('data-item-id');
         
         $('#item_rightclick').css({left: event.pageX, top: event.pageY, zIndex: 101}).show();
-        
+			
+		$('#item_rightclick > li.menuitem.addlabel,#item_labelmenu').hover(function() {
+			var left=parseInt($(this).parent().css('left').replace(/px/, ''))+parseInt($(this).outerWidth());
+			var top=parseInt($(this).parent().css('top').replace(/px/, ''))+parseInt($(this).position().top);
+			$('#item_labelmenu').css({left: left, top: top, zIndex: 101}).show();
+		}, function() {
+			$('#item_labelmenu').hide();
+		});
+		
         $('<div id="overlay"></div>')
             .css({left : '0px', top : '0px',position: 'absolute', width: '100%', height: '100%', zIndex: '100' })
             .click(function() {
@@ -176,8 +184,32 @@ $(document).ready(function() {
     $('#item_rightclick > li.menuitem.readlater').on('click', function() {
         $('#item_rightclick').hide();
         $('#overlay').hide();
-    
         if(!_context_msg) return;
         showReadLaterModal(_context_msg);
     });
+	$('#item_labelmenu')['append'](renderLabels());
+	$('#item_labelmenu > li').on('click',function(event) {
+		$('#item_labelmenu ').hide();
+		$('#item_rightclick').hide();
+        $('#overlay').hide();
+		if(!_context_msg) return;
+        if ($(this).hasClass("newlabel")) {
+            $('#add_new_label').modal('show');
+			$('#add_new_label').attr('data-mid',_context_msg);
+            $('#add_new_label > .modal-body > input')
+                .focus()
+                .keypress(function(e) {
+                    if(((typeof(e.which) == 'undefined') ? e.keyCode : e.which) != 13)
+                        return true;
+                    $('#add_new_label > .modal-footer > .btn-save').click();
+                    return false;
+                });
+            $('.modal-backdrop').on('contextmenu', function() { return false; });
+            return;
+		}
+		label = this.getAttribute('data-list');
+		console.log('add label ' + label + ' to the message')
+        addLabelToMessage(_context_msg, label.replace(/^label-/, ''));
+        updateListItems();
+	});
 });

@@ -17,6 +17,7 @@ function preview_labels(message) {
         label = this.getAttribute('data-list');
         if (label.match("new-label")) {
             $('#add_new_label').modal('show');
+			$('#add_new_label').attr('data-mid',_active_item);
             $('#add_new_label > .modal-body > input')
                 .focus()
                 .keypress(function(e) {
